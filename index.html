@@ -1,0 +1,2986 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Туры у Артура | Premium Uzbekistan Tours</title>
+
+<meta name="description" content="Авторские туры по Узбекистану: Самарканд, Бухара, Хива, горные туры и premium путешествия.">
+
+<meta http-equiv="Content-Security-Policy"
+content="
+default-src 'self';
+img-src 'self' https: data:;
+style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+font-src https://fonts.gstatic.com;
+script-src 'self' 'unsafe-inline';
+">
+
+<meta http-equiv="X-Frame-Options" content="DENY">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+  --primary: #f59e0b;
+  --primary-dark: #d97706;
+  --bg-dark: #0f172a;
+  --bg-card: rgba(30, 41, 59, 0.8);
+  --bg-card-light: rgba(255, 255, 255, 0.9);
+  --text-light: #f8fafc;
+  --text-dark: #1e293b;
+  --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  --glass: rgba(255, 255, 255, 0.1);
+  --glass-border: rgba(255, 255, 255, 0.2);
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:'Poppins',sans-serif;
+  background:var(--bg-dark);
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 90% 80%, rgba(118, 75, 162, 0.1) 0%, transparent 50%);
+  color:var(--text-light);
+  overflow-x:hidden;
+  transition:0.4s;
+}
+
+body.light{
+  background:linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  color:var(--text-dark);
+  --bg-card: rgba(255, 255, 255, 0.8);
+  --glass: rgba(0, 0, 0, 0.05);
+  --glass-border: rgba(0, 0, 0, 0.1);
+}
+
+/* LOADER */
+
+.loader{
+  position:fixed;
+  inset:0;
+  background:var(--bg-dark);
+  background-image: var(--gradient-1);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:99999;
+  transition:1s;
+}
+
+.loader.hidden{
+  opacity:0;
+  visibility:hidden;
+}
+
+.loader-circle{
+  width:80px;
+  height:80px;
+  border:5px solid rgba(255,255,255,0.1);
+  border-top:5px solid var(--primary);
+  border-radius:50%;
+  animation:spin 1s linear infinite;
+  box-shadow: 0 0 30px rgba(245, 158, 11, 0.5);
+}
+
+@keyframes spin{
+  100%{
+    transform:rotate(360deg);
+  }
+}
+
+/* HEADER */
+
+header{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  padding:15px 30px;
+  background:var(--glass);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--glass-border);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  z-index:999;
+  transition:0.3s;
+}
+
+header.scrolled{
+  background:rgba(15, 23, 42, 0.95);
+  box-shadow:0 10px 40px rgba(0,0,0,0.3);
+}
+
+header img{
+  height:60px;
+  border-radius:12px;
+  box-shadow:0 4px 15px rgba(0,0,0,0.3);
+  transition:0.3s;
+}
+
+header img:hover{
+  transform:scale(1.05);
+}
+
+nav{
+  display:flex;
+  gap:30px;
+}
+
+nav a{
+  color:white;
+  text-decoration:none;
+  font-weight:600;
+  font-size:15px;
+  padding:8px 16px;
+  border-radius:30px;
+  transition:0.3s;
+  position:relative;
+}
+
+nav a::after{
+  content:'';
+  position:absolute;
+  bottom:0;
+  left:50%;
+  width:0;
+  height:2px;
+  background:var(--primary);
+  transition:0.3s;
+  transform:translateX(-50%);
+}
+
+nav a:hover::after{
+  width:80%;
+}
+
+nav a:hover{
+  color:var(--primary);
+  background:var(--glass);
+}
+
+/* LANGUAGE */
+
+.language-switcher{
+  position:fixed;
+  right:15px;
+  top:50%;
+  transform:translateY(-50%);
+  background:var(--glass);
+  backdrop-filter:blur(20px);
+  padding:12px;
+  border-radius:30px;
+  z-index:9999;
+  box-shadow:0 10px 40px rgba(0,0,0,0.4);
+  border:1px solid var(--glass-border);
+}
+
+.language-switcher img{
+  width:42px;
+  height:30px;
+  margin:6px 0;
+  cursor:pointer;
+  border-radius:8px;
+  transition:0.3s;
+  box-shadow:0 4px 10px rgba(0,0,0,0.2);
+}
+
+.language-switcher img:hover{
+  transform:scale(1.15) rotate(5deg);
+  box-shadow:0 6px 20px rgba(0,0,0,0.4);
+}
+
+/* HERO */
+
+.hero{
+  position:relative;
+  height:100vh;
+  overflow:hidden;
+}
+
+.hero img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  filter:brightness(40%);
+  transform:scale(1.1);
+  animation:heroZoom 20s ease-in-out infinite alternate;
+}
+
+@keyframes heroZoom{
+  from{
+    transform:scale(1.1);
+  }
+  to{
+    transform:scale(1);
+  }
+}
+
+.hero-overlay{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg, rgba(15, 23, 42, 0.7) 0%, rgba(15, 23, 42, 0.3) 50%, rgba(15, 23, 42, 0.8) 100%);
+}
+
+.hero-content{
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  z-index:2;
+  padding:20px;
+}
+
+.hero-content h1{
+  font-size:72px;
+  margin-bottom:25px;
+  animation:fadeUp 1s ease;
+  background:linear-gradient(135deg, #fff 0%, var(--primary) 100%);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  text-shadow:0 0 40px rgba(245, 158, 11, 0.3);
+}
+
+.hero-content p{
+  font-size:24px;
+  max-width:700px;
+  margin-bottom:30px;
+  line-height:1.6;
+  opacity:0.9;
+}
+
+.price-badge{
+  background:var(--gradient-1);
+  color:white;
+  padding:14px 32px;
+  border-radius:50px;
+  font-weight:700;
+  margin-bottom:30px;
+  box-shadow:0 10px 30px rgba(102, 126, 234, 0.4);
+  animation:pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse{
+  0%, 100%{
+    transform:scale(1);
+  }
+  50%{
+    transform:scale(1.05);
+  }
+}
+
+@keyframes fadeUp{
+  from{
+    opacity:0;
+    transform:translateY(40px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* BUTTONS */
+
+button{
+  border:none;
+  padding:16px 32px;
+  border-radius:14px;
+  font-weight:700;
+  cursor:pointer;
+  background:var(--gradient-1);
+  color:white;
+  transition:0.3s;
+  font-size:16px;
+  box-shadow:0 8px 25px rgba(102, 126, 234, 0.4);
+  position:relative;
+  overflow:hidden;
+}
+
+button::before{
+  content:'';
+  position:absolute;
+  top:0;
+  left:-100%;
+  width:100%;
+  height:100%;
+  background:linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transition:0.5s;
+}
+
+button:hover::before{
+  left:100%;
+}
+
+button:hover{
+  transform:translateY(-5px);
+  box-shadow:0 15px 35px rgba(102, 126, 234, 0.5);
+}
+
+/* SECTIONS */
+
+.section{
+  max-width:1200px;
+  margin:auto;
+  padding:100px 20px;
+}
+
+.section-title{
+  text-align:center;
+  font-size:42px;
+  margin-bottom:60px;
+}
+
+/* CARDS */
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:35px;
+}
+
+.card{
+  background:var(--bg-card);
+  backdrop-filter:blur(20px);
+  border:1px solid var(--glass-border);
+  border-radius:24px;
+  overflow:hidden;
+  transition:0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow:0 15px 40px rgba(0,0,0,0.3);
+  position:relative;
+}
+
+.card::before{
+  content:'';
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  height:4px;
+  background:var(--gradient-1);
+  transform:scaleX(0);
+  transition:0.4s;
+}
+
+.card:hover::before{
+  transform:scaleX(1);
+}
+
+.card:hover{
+  transform:translateY(-15px) scale(1.02);
+  box-shadow:0 25px 60px rgba(0,0,0,0.4);
+}
+
+.card img{
+  width:100%;
+  height:280px;
+  object-fit:cover;
+  transition:0.4s;
+}
+
+.card:hover img{
+  transform:scale(1.1);
+}
+
+.card-content{
+  padding:30px;
+  position:relative;
+}
+
+.card-content h3{
+  margin-bottom:15px;
+  font-size:26px;
+  background:var(--gradient-1);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+
+.card-content p{
+  line-height:1.7;
+  opacity:0.9;
+}
+
+/* SLIDER */
+
+.slider{
+  position:relative;
+  overflow:hidden;
+  border-radius:24px;
+  height:550px;
+  box-shadow:0 20px 60px rgba(0,0,0,0.4);
+}
+
+.slider img{
+  position:absolute;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  opacity:0;
+  transition:1.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transform:scale(1.1);
+}
+
+.slider img.active{
+  opacity:1;
+  transform:scale(1);
+}
+
+.slider-btn{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  width:60px;
+  height:60px;
+  border-radius:50%;
+  border:none;
+  background:var(--glass);
+  backdrop-filter:blur(10px);
+  color:white;
+  font-size:24px;
+  cursor:pointer;
+  z-index:5;
+  transition:0.3s;
+  border:1px solid var(--glass-border);
+}
+
+.slider-btn:hover{
+  background:var(--gradient-1);
+  transform:translateY(-50%) scale(1.1);
+}
+
+.prev{
+  left:25px;
+}
+
+.next{
+  right:25px;
+}
+
+/* REVIEWS */
+
+.reviews{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:30px;
+}
+
+.review{
+  background:var(--bg-card);
+  backdrop-filter:blur(20px);
+  padding:35px;
+  border-radius:20px;
+  border:1px solid var(--glass-border);
+  transition:0.4s;
+  position:relative;
+}
+
+.review::before{
+  content:'"';
+  position:absolute;
+  top:20px;
+  left:25px;
+  font-size:60px;
+  color:var(--primary);
+  opacity:0.3;
+  font-family:Georgia, serif;
+}
+
+.review:hover{
+  transform:translateY(-8px);
+  box-shadow:0 20px 50px rgba(0,0,0,0.3);
+}
+
+.review h4{
+  margin-bottom:15px;
+  color:var(--primary);
+  font-size:18px;
+  position:relative;
+  z-index:1;
+}
+
+.review p{
+  line-height:1.8;
+  opacity:0.9;
+  position:relative;
+  z-index:1;
+}
+
+/* CONTACT */
+
+.contact-box{
+  text-align:center;
+  line-height:2.5;
+  font-size:22px;
+  background:var(--bg-card);
+  backdrop-filter:blur(20px);
+  padding:50px;
+  border-radius:24px;
+  border:1px solid var(--glass-border);
+  max-width:600px;
+  margin:0 auto;
+}
+
+.contact-box p{
+  transition:0.3s;
+}
+
+.contact-box p:hover{
+  color:var(--primary);
+  transform:scale(1.05);
+}
+
+/* FLOAT BUTTONS */
+
+.float-buttons{
+  position:fixed;
+  bottom:25px;
+  right:25px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  z-index:9999;
+}
+
+.float-buttons a,
+.float-buttons button{
+  width:55px;
+  height:55px;
+  border-radius:50%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-decoration:none;
+  color:white;
+  font-size:22px;
+  border:none;
+  cursor:pointer;
+  transition:0.3s;
+  box-shadow:0 8px 25px rgba(0,0,0,0.3);
+}
+
+.float-buttons a:hover,
+.float-buttons button:hover{
+  transform:scale(1.1);
+}
+
+.whatsapp{
+  background:linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+}
+
+.telegram{
+  background:linear-gradient(135deg, #0088cc 0%, #005f8f 100%);
+}
+
+.theme-btn{
+  background:var(--gradient-2);
+}
+
+/* MODAL */
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.8);
+  backdrop-filter:blur(10px);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:99999;
+}
+
+.modal-content{
+  background:var(--bg-card-light);
+  backdrop-filter:blur(30px);
+  color:black;
+  padding:40px;
+  border-radius:28px;
+  width:90%;
+  max-width:480px;
+  position:relative;
+  box-shadow:0 30px 80px rgba(0,0,0,0.5);
+  border:1px solid var(--glass-border);
+  animation:modalSlide 0.4s ease;
+}
+
+@keyframes modalSlide{
+  from{
+    opacity:0;
+    transform:translateY(-50px) scale(0.9);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0) scale(1);
+  }
+}
+
+.modal-content h2{
+  margin-bottom:25px;
+  background:var(--gradient-1);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+
+.modal-content input,
+.modal-content textarea{
+  width:100%;
+  padding:14px 18px;
+  margin-bottom:18px;
+  border-radius:12px;
+  border:2px solid #e2e8f0;
+  background:rgba(255,255,255,0.9);
+  font-size:15px;
+  transition:0.3s;
+}
+
+.modal-content input:focus,
+.modal-content textarea:focus{
+  outline:none;
+  border-color:var(--primary);
+  box-shadow:0 0 0 4px rgba(245, 158, 11, 0.1);
+}
+
+.close{
+  position:absolute;
+  right:25px;
+  top:20px;
+  font-size:32px;
+  cursor:pointer;
+  width:40px;
+  height:40px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:50%;
+  transition:0.3s;
+  background:rgba(0,0,0,0.1);
+}
+
+.close:hover{
+  background:var(--gradient-2);
+  color:white;
+  transform:rotate(90deg);
+}
+
+/* PROGRESS BAR */
+
+#progressBar{
+  position:fixed;
+  top:0;
+  left:0;
+  width:0%;
+  height:5px;
+  background:var(--gradient-1);
+  z-index:999999;
+  box-shadow:0 0 20px rgba(102, 126, 234, 0.5);
+}
+
+/* TOP BUTTON */
+
+#topBtn{
+  position:fixed;
+  left:25px;
+  bottom:25px;
+  width:60px;
+  height:60px;
+  border:none;
+  border-radius:50%;
+  background:var(--gradient-3);
+  color:white;
+  font-size:26px;
+  display:none;
+  cursor:pointer;
+  z-index:9999;
+  box-shadow:0 10px 30px rgba(79, 172, 254, 0.4);
+  transition:0.3s;
+}
+
+#topBtn:hover{
+  transform:translateY(-5px) scale(1.1);
+  box-shadow:0 15px 40px rgba(79, 172, 254, 0.5);
+}
+
+/* CLOCK */
+
+#clock{
+  position:fixed;
+  top:100px;
+  right:25px;
+  background:var(--glass);
+  backdrop-filter:blur(20px);
+  padding:12px 20px;
+  border-radius:14px;
+  z-index:999;
+  font-weight:600;
+  border:1px solid var(--glass-border);
+  box-shadow:0 8px 25px rgba(0,0,0,0.3);
+}
+
+/* PLACES - REMOVED (FAKE FEATURE) */
+
+/* ANIMATION */
+
+.fade-in{
+  opacity:0;
+  transform:translateY(50px);
+  transition:1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.fade-in.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* FOOTER */
+
+footer{
+  text-align:center;
+  padding:50px;
+  background:linear-gradient(180deg, var(--bg-dark) 0%, #020617 100%);
+  border-top:1px solid var(--glass-border);
+}
+
+footer p{
+  opacity:0.8;
+  font-size:16px;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+  .hero-content h1{
+    font-size:38px;
+  }
+
+  .hero-content p{
+    font-size:17px;
+  }
+
+  .slider{
+    height:300px;
+  }
+
+  header{
+    padding:12px 20px;
+  }
+
+  header img{
+    height:50px;
+  }
+
+  nav{
+    display:none;
+  }
+
+  .section-title{
+    font-size:32px;
+  }
+
+  .cards{
+    grid-template-columns:1fr;
+  }
+
+  .language-switcher,
+  #clock,
+  .places-left{
+    display:none;
+  }
+
+  .float-buttons{
+    bottom:15px;
+    right:15px;
+  }
+
+  .float-buttons a,
+  .float-buttons button{
+    width:55px;
+    height:55px;
+    font-size:22px;
+  }
+
+  #topBtn{
+    left:15px;
+    bottom:85px;
+    width:50px;
+    height:50px;
+    font-size:22px;
+  }
+
+}
+
+/* MOBILE MENU */
+
+.hamburger{
+  display:none;
+  flex-direction:column;
+  gap:5px;
+  cursor:pointer;
+  z-index:1000;
+}
+
+.hamburger span{
+  width:25px;
+  height:3px;
+  background:white;
+  transition:0.3s;
+  border-radius:2px;
+}
+
+.hamburger.active span:nth-child(1){
+  transform:rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.active span:nth-child(2){
+  opacity:0;
+}
+
+.hamburger.active span:nth-child(3){
+  transform:rotate(-45deg) translate(7px, -6px);
+}
+
+.mobile-menu{
+  position:fixed;
+  top:0;
+  right:-100%;
+  width:70%;
+  height:100vh;
+  background:var(--bg-dark);
+  backdrop-filter:blur(30px);
+  padding:100px 30px;
+  transition:0.4s;
+  z-index:998;
+  border-left:1px solid var(--glass-border);
+}
+
+.mobile-menu.active{
+  right:0;
+}
+
+.mobile-menu a{
+  display:block;
+  color:white;
+  text-decoration:none;
+  font-size:20px;
+  padding:15px 0;
+  border-bottom:1px solid var(--glass-border);
+  transition:0.3s;
+}
+
+.mobile-menu a:hover{
+  color:var(--primary);
+  padding-left:10px;
+}
+
+@media(max-width:768px){
+  .hamburger{
+    display:flex;
+  }
+}
+
+/* SEARCH */
+
+.search-container{
+  position:relative;
+  max-width:400px;
+  margin:0 auto 40px;
+}
+
+.search-input{
+  width:100%;
+  padding:16px 50px 16px 20px;
+  border-radius:30px;
+  border:2px solid var(--glass-border);
+  background:var(--bg-card);
+  backdrop-filter:blur(20px);
+  color:white;
+  font-size:16px;
+  transition:0.3s;
+}
+
+.search-input:focus{
+  outline:none;
+  border-color:var(--primary);
+  box-shadow:0 0 20px rgba(245, 158, 11, 0.3);
+}
+
+.search-icon{
+  position:absolute;
+  right:20px;
+  top:50%;
+  transform:translateY(-50%);
+  color:var(--primary);
+  font-size:20px;
+}
+
+/* FILTERS & SORTING */
+
+.filters-container{
+  display:flex;
+  flex-wrap:wrap;
+  gap:15px;
+  margin-bottom:30px;
+  justify-content:center;
+}
+
+.filter-btn{
+  padding:10px 20px;
+  border-radius:25px;
+  border:2px solid var(--glass-border);
+  background:var(--bg-card);
+  backdrop-filter:blur(20px);
+  color:white;
+  cursor:pointer;
+  transition:0.3s;
+  font-weight:600;
+}
+
+.filter-btn:hover,
+.filter-btn.active{
+  background:var(--gradient-1);
+  border-color:transparent;
+  transform:translateY(-3px);
+}
+
+.sort-select{
+  padding:10px 20px;
+  border-radius:25px;
+  border:2px solid var(--glass-border);
+  background:var(--bg-card);
+  backdrop-filter:blur(20px);
+  color:white;
+  cursor:pointer;
+  font-size:14px;
+}
+
+/* FAVORITES */
+
+.favorite-btn{
+  position:absolute;
+  top:15px;
+  right:15px;
+  width:45px;
+  height:45px;
+  border-radius:50%;
+  background:var(--glass);
+  backdrop-filter:blur(20px);
+  border:1px solid var(--glass-border);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  transition:0.3s;
+  z-index:10;
+  font-size:22px;
+}
+
+.favorite-btn:hover{
+  transform:scale(1.1);
+  background:var(--gradient-2);
+}
+
+.favorite-btn.active{
+  color:#ff4757;
+  background:rgba(255, 71, 87, 0.2);
+}
+
+/* LIGHTBOX */
+
+.lightbox{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.95);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:999999;
+  animation:fadeIn 0.3s ease;
+}
+
+.lightbox.active{
+  display:flex;
+}
+
+.lightbox img{
+  max-width:90%;
+  max-height:90vh;
+  border-radius:10px;
+  box-shadow:0 0 50px rgba(0,0,0,0.5);
+}
+
+.lightbox-close{
+  position:absolute;
+  top:30px;
+  right:30px;
+  font-size:40px;
+  color:white;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.lightbox-close:hover{
+  color:var(--primary);
+  transform:rotate(90deg);
+}
+
+.lightbox-nav{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:50px;
+  color:white;
+  cursor:pointer;
+  padding:20px;
+  transition:0.3s;
+}
+
+.lightbox-nav:hover{
+  color:var(--primary);
+}
+
+.lightbox-prev{
+  left:30px;
+}
+
+.lightbox-next{
+  right:30px;
+}
+
+/* TOUR DETAILS MODAL */
+
+.tour-details-modal{
+  max-width:700px;
+}
+
+.tour-details-content{
+  max-height:70vh;
+  overflow-y:auto;
+  padding-right:10px;
+}
+
+.tour-details-content::-webkit-scrollbar{
+  width:8px;
+}
+
+.tour-details-content::-webkit-scrollbar-thumb{
+  background:var(--primary);
+  border-radius:4px;
+}
+
+.tour-features{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:15px;
+  margin:20px 0;
+}
+
+.tour-feature{
+  background:var(--glass);
+  padding:15px;
+  border-radius:12px;
+  text-align:center;
+  border:1px solid var(--glass-border);
+}
+
+.tour-feature-icon{
+  font-size:24px;
+  margin-bottom:8px;
+}
+
+/* WEATHER WIDGET - REMOVED TO REDUCE CLUTTER */
+
+/* CURRENCY CONVERTER - REMOVED TO REDUCE CLUTTER */
+
+/* BOOKING CALENDAR */
+
+.calendar-container{
+  background:var(--bg-card);
+  backdrop-filter:blur(20px);
+  padding:30px;
+  border-radius:24px;
+  border:1px solid var(--glass-border);
+  margin:30px 0;
+}
+
+.calendar-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:20px;
+}
+
+.calendar-grid{
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+  gap:5px;
+}
+
+.calendar-day{
+  padding:15px;
+  text-align:center;
+  border-radius:10px;
+  cursor:pointer;
+  transition:0.3s;
+  border:1px solid var(--glass-border);
+}
+
+.calendar-day:hover{
+  background:var(--glass);
+}
+
+.calendar-day.selected{
+  background:var(--gradient-1);
+  color:white;
+}
+
+.calendar-day.disabled{
+  opacity:0.3;
+  cursor:not-allowed;
+}
+
+/* PRICE CALCULATOR */
+
+.price-calculator{
+  background:var(--bg-card);
+  backdrop-filter:blur(20px);
+  padding:30px;
+  border-radius:24px;
+  border:1px solid var(--glass-border);
+  margin:30px 0;
+}
+
+.calculator-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 0;
+  border-bottom:1px solid var(--glass-border);
+}
+
+.calculator-total{
+  font-size:24px;
+  font-weight:700;
+  color:var(--primary);
+  margin-top:20px;
+}
+
+/* DISCOUNT CODE */
+
+.discount-section{
+  margin:20px 0;
+}
+
+.discount-input{
+  display:flex;
+  gap:10px;
+}
+
+.discount-input input{
+  flex:1;
+  padding:12px;
+  border-radius:10px;
+  border:2px solid var(--glass-border);
+  background:var(--bg-dark);
+  color:white;
+}
+
+.discount-btn{
+  padding:12px 24px;
+  border-radius:10px;
+  background:var(--gradient-1);
+  color:white;
+  border:none;
+  cursor:pointer;
+  font-weight:600;
+}
+
+/* NEWSLETTER */
+
+.newsletter-section{
+  background:var(--gradient-1);
+  padding:50px;
+  border-radius:24px;
+  text-align:center;
+  margin:50px auto;
+  max-width:800px;
+}
+
+.newsletter-form{
+  display:flex;
+  gap:15px;
+  max-width:500px;
+  margin:20px auto;
+}
+
+.newsletter-form input{
+  flex:1;
+  padding:15px;
+  border-radius:30px;
+  border:none;
+  font-size:16px;
+}
+
+/* SOCIAL SHARING */
+
+.social-share{
+  display:flex;
+  gap:15px;
+  justify-content:center;
+  margin:20px 0;
+}
+
+.share-btn{
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:white;
+  text-decoration:none;
+  font-size:20px;
+  transition:0.3s;
+  border:none;
+  cursor:pointer;
+}
+
+.share-btn:hover{
+  transform:scale(1.1) rotate(5deg);
+}
+
+.share-facebook{background:#1877f2;}
+.share-twitter{background:#1da1f2;}
+.share-whatsapp{background:#25d366;}
+.share-telegram{background:#0088cc;}
+
+/* FONT SIZE ADJUSTER - REMOVED TO REDUCE CLUTTER */
+
+/* ACCESSIBILITY MODE - REMOVED TO REDUCE CLUTTER */
+
+/* COUNTDOWN TIMER */
+
+.countdown-timer{
+  background:var(--gradient-2);
+  padding:20px 40px;
+  border-radius:20px;
+  text-align:center;
+  margin:30px auto;
+  max-width:500px;
+  box-shadow:0 10px 30px rgba(240, 147, 251, 0.4);
+}
+
+.countdown-display{
+  display:flex;
+  justify-content:center;
+  gap:20px;
+  margin-top:15px;
+}
+
+.countdown-item{
+  text-align:center;
+}
+
+.countdown-number{
+  font-size:36px;
+  font-weight:700;
+}
+
+.countdown-label{
+  font-size:12px;
+  opacity:0.8;
+}
+
+/* LIVE CHAT - REMOVED TO REDUCE COMPLEXITY */
+
+/* FAQ ACCORDION */
+
+.faq-section{
+  max-width:800px;
+  margin:50px auto;
+}
+
+.faq-item{
+  background:var(--bg-card);
+  backdrop-filter:blur(20px);
+  border-radius:16px;
+  margin-bottom:15px;
+  border:1px solid var(--glass-border);
+  overflow:hidden;
+}
+
+.faq-question{
+  padding:20px;
+  cursor:pointer;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-weight:600;
+  transition:0.3s;
+}
+
+.faq-question:hover{
+  background:var(--glass);
+}
+
+.faq-answer{
+  max-height:0;
+  overflow:hidden;
+  padding:0 20px;
+  transition:0.3s;
+  opacity:0;
+}
+
+.faq-item.active .faq-answer{
+  max-height:200px;
+  padding:20px;
+  opacity:1;
+}
+
+.faq-icon{
+  transition:0.3s;
+}
+
+.faq-item.active .faq-icon{
+  transform:rotate(180deg);
+}
+
+/* TESTIMONIAL CAROUSEL */
+
+.testimonial-carousel{
+  position:relative;
+  overflow:hidden;
+  padding:20px 0;
+}
+
+.testimonial-track{
+  display:flex;
+  transition:0.5s;
+}
+
+.testimonial-slide{
+  min-width:100%;
+  padding:0 20px;
+}
+
+.carousel-dots{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  margin-top:20px;
+}
+
+.carousel-dot{
+  width:12px;
+  height:12px;
+  border-radius:50%;
+  background:var(--glass);
+  border:1px solid var(--glass-border);
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.carousel-dot.active{
+  background:var(--primary);
+}
+
+/* RATING SYSTEM */
+
+.rating-stars{
+  display:flex;
+  gap:5px;
+  font-size:24px;
+  color:#ffd700;
+  cursor:pointer;
+}
+
+.rating-stars span{
+  transition:0.2s;
+}
+
+.rating-stars span:hover,
+.rating-stars span.active{
+  transform:scale(1.2);
+}
+
+/* REVIEW FORM */
+
+.review-form{
+  background:var(--bg-card);
+  backdrop-filter:blur(20px);
+  padding:30px;
+  border-radius:24px;
+  border:1px solid var(--glass-border);
+  max-width:600px;
+  margin:30px auto;
+}
+
+.review-form textarea{
+  width:100%;
+  padding:15px;
+  border-radius:12px;
+  border:2px solid var(--glass-border);
+  background:var(--bg-dark);
+  color:white;
+  resize:vertical;
+  min-height:120px;
+  margin-bottom:15px;
+}
+
+/* WISHLIST - REMOVED TO REDUCE COMPLEXITY */
+
+/* COMPARISON - REMOVED TO REDUCE COMPLEXITY */
+
+/* SCROLL INDICATOR - REMOVED TO REDUCE COMPLEXITY */
+
+/* PRINT STYLES */
+
+@media print{
+  .float-buttons,
+  .language-switcher,
+  #clock{
+    display:none !important;
+  }
+  
+  body{
+    background:white !important;
+    color:black !important;
+  }
+  
+  header{
+    position:static !important;
+  }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- LOADER -->
+
+<div class="loader" id="loader">
+  <div class="loader-circle"></div>
+</div>
+
+<!-- PROGRESS -->
+
+<div id="progressBar"></div>
+
+<!-- LANGUAGE -->
+
+<div class="language-switcher">
+
+<img src="https://flagcdn.com/w40/ru.png" onclick="setLanguage('ru')">
+
+<img src="https://flagcdn.com/w40/es.png" onclick="setLanguage('es')">
+
+</div>
+
+<!-- HEADER -->
+
+<header>
+
+<img src="photo_2025-10-25_21-12-55.jpg">
+
+<nav>
+
+<a href="#tours">Туры</a>
+
+<a href="#gallery">Галерея</a>
+
+<a href="#reviews">Отзывы</a>
+
+<a href="#contacts">Контакты</a>
+
+</nav>
+
+<div class="hamburger" onclick="toggleMobileMenu()">
+<span></span>
+<span></span>
+<span></span>
+</div>
+
+</header>
+
+<!-- MOBILE MENU -->
+
+<div class="mobile-menu" id="mobileMenu">
+
+<a href="#tours" onclick="toggleMobileMenu()">Туры</a>
+
+<a href="#gallery" onclick="toggleMobileMenu()">Галерея</a>
+
+<a href="#reviews" onclick="toggleMobileMenu()">Отзывы</a>
+
+<a href="#contacts" onclick="toggleMobileMenu()">Контакты</a>
+
+</div>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<img src="efe253aa43b8c95b0b17234a6248b66b.jpg">
+
+<div class="hero-overlay"></div>
+
+<div class="hero-content">
+
+<h1 data-translate="hero_title">
+Premium Uzbekistan Tours
+</h1>
+
+<p data-translate="hero_text">
+Авторские путешествия по древним городам Узбекистана
+</p>
+
+<div class="price-badge">
+от 40$
+</div>
+
+<button onclick="openModal()" data-translate="book">
+Забронировать
+</button>
+
+</div>
+
+</section>
+
+<!-- TOURS -->
+
+<section class="section fade-in" id="tours">
+
+<h2 class="section-title" data-translate="popular">
+Популярные туры
+</h2>
+
+<!-- Search -->
+
+<div class="search-container">
+
+<input type="text" class="search-input" placeholder="Поиск туров..." oninput="searchTours(this.value)">
+
+<span class="search-icon">🔍</span>
+
+</div>
+
+<!-- Filters & Sorting -->
+
+<div class="filters-container">
+
+<button class="filter-btn active" onclick="filterTours('all')">Все</button>
+
+<button class="filter-btn" onclick="filterTours('city')">Города</button>
+
+<button class="filter-btn" onclick="filterTours('nature')">Природа</button>
+
+<button class="filter-btn" onclick="filterTours('culture')">Культура</button>
+
+<select class="sort-select" onchange="sortTours(this.value)">
+
+<option value="default">Сортировка</option>
+
+<option value="price-asc">Цена: по возрастанию</option>
+
+<option value="price-desc">Цена: по убыванию</option>
+
+<option value="rating">Рейтинг</option>
+
+</select>
+
+</div>
+
+<div class="cards">
+
+<div class="card" data-category="city" data-price="40" data-rating="5">
+
+<button class="favorite-btn" onclick="toggleFavorite(this, 'Бухара')">♡</button>
+
+<img src="Bukhara 1.jpg" onclick="openLightbox(this.src)">
+
+<div class="card-content">
+
+<h3 data-translate="bukhara">
+Бухара
+</h3>
+
+<p data-translate="bukhara_text">
+Исторический город с атмосферой восточной сказки.
+</p>
+
+<button onclick="openTourDetails('Бухара', 40, 'city')">Подробнее</button>
+
+</div>
+
+</div>
+
+<div class="card" data-category="city" data-price="45" data-rating="4">
+
+<button class="favorite-btn" onclick="toggleFavorite(this, 'Хива')">♡</button>
+
+<img src="photo_2026-02-23_20-55-50.jpg" onclick="openLightbox(this.src)">
+
+<div class="card-content">
+
+<h3 data-translate="khiva">
+Хива
+</h3>
+
+<p data-translate="khiva_text">
+Древний город-крепость под открытым небом.
+</p>
+
+<button onclick="openTourDetails('Хива', 45, 'city')">Подробнее</button>
+
+</div>
+
+</div>
+
+<div class="card" data-category="nature" data-price="55" data-rating="5">
+
+<button class="favorite-btn" onclick="toggleFavorite(this, 'Горный тур')">♡</button>
+
+<img src="photo_2026-02-23_23-29-31.jpg" onclick="openLightbox(this.src)">
+
+<div class="card-content">
+
+<h3 data-translate="mountains">
+Горный тур
+</h3>
+
+<p data-translate="mountains_text">
+Природа, озёра и горы Узбекистана.
+</p>
+
+<button onclick="openTourDetails('Горный тур', 55, 'nature')">Подробнее</button>
+
+</div>
+
+</div>
+
+<div class="card" data-category="city" data-price="50" data-rating="5">
+
+<button class="favorite-btn" onclick="toggleFavorite(this, 'Самарканд')">♡</button>
+
+<img src="efe253aa43b8c95b0b17234a6248b66b.jpg" onclick="openLightbox(this.src)">
+
+<div class="card-content">
+
+<h3>
+Самарканд
+</h3>
+
+<p>
+Древний город на Великом шелковом пути с величественными архитектурными памятниками.
+</p>
+
+<button onclick="openTourDetails('Самарканд', 50, 'city')">Подробнее</button>
+
+</div>
+
+</div>
+
+<div class="card" data-category="nature" data-price="60" data-rating="5">
+
+<button class="favorite-btn" onclick="toggleFavorite(this, 'Озера')">♡</button>
+
+<img src="0ad25e08c074b476f8cf40d079dabf2f.jpg" onclick="openLightbox(this.src)">
+
+<div class="card-content">
+
+<h3>
+Горные озера
+</h3>
+
+<p>
+Уникальные горные озера с кристально чистой водой и живописными видами.
+</p>
+
+<button onclick="openTourDetails('Горные озера', 60, 'nature')">Подробнее</button>
+
+</div>
+
+</div>
+
+<div class="card" data-category="culture" data-price="48" data-rating="4">
+
+<button class="favorite-btn" onclick="toggleFavorite(this, 'Культура')">♡</button>
+
+<img src="3f1296d9fa554f5d38dd246eba2dcada.jpg" onclick="openLightbox(this.src)">
+
+<div class="card-content">
+
+<h3>
+Культурный тур
+</h3>
+
+<p>
+
+Погружение в богатую культуру и традиции узбекского народа.
+</p>
+
+<button onclick="openTourDetails('Культурный тур', 48, 'culture')">Подробнее</button>
+
+</div>
+
+</div>
+
+<div class="card" data-category="city" data-price="52" data-rating="5">
+
+<button class="favorite-btn" onclick="toggleFavorite(this, 'Ташкент')">♡</button>
+
+<img src="7121fd116a687099bcee8f5882f4afdc.jpg" onclick="openLightbox(this.src)">
+
+<div class="card-content">
+
+<h3>
+Ташкент
+</h3>
+
+<p>
+Современная столица Узбекистана с blend of ancient and modern architecture.
+</p>
+
+<button onclick="openTourDetails('Ташкент', 52, 'city')">Подробнее</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- GALLERY -->
+
+<section class="section fade-in" id="gallery">
+
+<h2 class="section-title">
+Галерея
+</h2>
+
+<div class="slider" id="mainSlider">
+
+<img src="photo_2026-02-23_01-36-31.jpg" class="active">
+
+<img src="photo_2026-02-23_23-29-31.jpg">
+
+<img src="photo_2026-02-28_16-21-53.jpg">
+
+<img src="Bukhara 1.jpg">
+
+<img src="efe253aa43b8c95b0b17234a6248b66b.jpg">
+
+<img src="0ad25e08c074b476f8cf40d079dabf2f.jpg">
+
+<img src="3f1296d9fa554f5d38dd246eba2dcada.jpg">
+
+<img src="7121fd116a687099bcee8f5882f4afdc.jpg">
+
+<button class="slider-btn prev"
+onclick="prevSlide('mainSlider')">
+&#10094;
+</button>
+
+<button class="slider-btn next"
+onclick="nextSlide('mainSlider')">
+&#10095;
+</button>
+
+</div>
+
+</section>
+
+<!-- REVIEWS -->
+
+<section class="section fade-in" id="reviews">
+
+<h2 class="section-title">
+Отзывы
+</h2>
+
+<!-- Rating System -->
+
+<div class="rating-stars" id="ratingStars">
+
+<span onclick="setRating(1)">★</span>
+
+<span onclick="setRating(2)">★</span>
+
+<span onclick="setRating(3)">★</span>
+
+<span onclick="setRating(4)">★</span>
+
+<span onclick="setRating(5)">★</span>
+
+</div>
+
+<!-- Testimonial Carousel -->
+
+<div class="testimonial-carousel">
+
+<div class="testimonial-track" id="testimonialTrack">
+
+<div class="testimonial-slide">
+
+<div class="review">
+
+<h4>María • Argentina</h4>
+
+<p>
+Невероятное путешествие.
+</p>
+
+</div>
+
+</div>
+
+<div class="testimonial-slide">
+
+<div class="review">
+
+<h4>Carlos • España</h4>
+
+<p>
+Excelente organización y atención.
+</p>
+
+</div>
+
+</div>
+
+<div class="testimonial-slide">
+
+<div class="review">
+
+<h4>Алексей • Россия</h4>
+
+<p>
+Очень атмосферный тур.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="carousel-dots" id="carouselDots"></div>
+
+</div>
+
+<!-- Review Form -->
+
+<div class="review-form">
+
+<h3>Оставить отзыв</h3>
+
+<textarea placeholder="Ваш отзыв..."></textarea>
+
+<div class="rating-stars" id="reviewRating">
+
+<span onclick="setReviewRating(1)">★</span>
+
+<span onclick="setReviewRating(2)">★</span>
+
+<span onclick="setReviewRating(3)">★</span>
+
+<span onclick="setReviewRating(4)">★</span>
+
+<span onclick="setReviewRating(5)">★</span>
+
+</div>
+
+<button onclick="submitReview()">Отправить отзыв</button>
+
+</div>
+
+</section>
+
+<!-- CONTACTS -->
+
+<section class="section fade-in" id="contacts">
+
+<h2 class="section-title">
+Контакты
+</h2>
+
+<div class="contact-box">
+
+<p>📞 +998 91 708 96 19</p>
+
+<p>📞 +998 91 522 96 19</p>
+
+<p id="email"></p>
+
+</div>
+
+<!-- Social Sharing -->
+
+<div class="social-share">
+
+<button class="share-btn share-facebook" onclick="shareToFacebook()">f</button>
+
+<button class="share-btn share-twitter" onclick="shareToTwitter()">t</button>
+
+<button class="share-btn share-whatsapp" onclick="shareToWhatsApp()">w</button>
+
+<button class="share-btn share-telegram" onclick="shareToTelegram()">tg</button>
+
+</div>
+
+</section>
+
+<!-- FAQ -->
+
+<section class="section fade-in" id="faq">
+
+<h2 class="section-title">
+Частые вопросы
+</h2>
+
+<div class="faq-section">
+
+<div class="faq-item" onclick="toggleFaq(this)">
+
+<div class="faq-question">
+
+Как забронировать тур?
+
+<span class="faq-icon">▼</span>
+
+</div>
+
+<div class="faq-answer">
+
+Заполните форму бронирования или свяжитесь с нами по телефону.
+
+</div>
+
+</div>
+
+<div class="faq-item" onclick="toggleFaq(this)">
+
+<div class="faq-question">
+
+Какие способы оплаты доступны?
+
+<span class="faq-icon">▼</span>
+
+</div>
+
+<div class="faq-answer">
+
+Мы принимаем банковские карты, наличные и банковские переводы.
+
+</div>
+
+</div>
+
+<div class="faq-item" onclick="toggleFaq(this)">
+
+<div class="faq-question">
+
+Нужна ли виза?
+
+<span class="faq-icon">▼</span>
+
+</div>
+
+<div class="faq-answer">
+
+Гражданам многих стран виза не требуется. Уточните у консульства.
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- NEWSLETTER -->
+
+<section class="section fade-in">
+
+<div class="newsletter-section">
+
+<h2>Подпишитесь на новости</h2>
+
+<p>Получайте специальные предложения и скидки</p>
+
+<form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
+
+<input type="email" placeholder="Ваш email" required>
+
+<button type="submit">Подписаться</button>
+
+</form>
+
+</div>
+
+</section>
+
+<!-- COUNTDOWN TIMER -->
+
+<div class="countdown-timer">
+
+<h3>Специальное предложение заканчивается через:</h3>
+
+<div class="countdown-display" id="countdownDisplay">
+
+<div class="countdown-item">
+
+<div class="countdown-number" id="days">00</div>
+
+<div class="countdown-label">Дней</div>
+
+</div>
+
+<div class="countdown-item">
+
+<div class="countdown-number" id="hours">00</div>
+
+<div class="countdown-label">Часов</div>
+
+</div>
+
+<div class="countdown-item">
+
+<div class="countdown-number" id="minutes">00</div>
+
+<div class="countdown-label">Минут</div>
+
+</div>
+
+<div class="countdown-item">
+
+<div class="countdown-number" id="seconds">00</div>
+
+<div class="countdown-label">Секунд</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- BOOKING CALENDAR -->
+
+<section class="section fade-in">
+
+<h2 class="section-title">Выберите дату</h2>
+
+<div class="calendar-container">
+
+<div class="calendar-header">
+
+<button onclick="changeMonth(-1)">◀</button>
+
+<h3 id="calendarMonth">Январь 2026</h3>
+
+<button onclick="changeMonth(1)">▶</button>
+
+</div>
+
+<div class="calendar-grid" id="calendarGrid"></div>
+
+</div>
+
+</section>
+
+<!-- PRICE CALCULATOR -->
+
+<section class="section fade-in">
+
+<h2 class="section-title">Калькулятор цены</h2>
+
+<div class="price-calculator">
+
+<div class="calculator-row">
+
+<span>Количество человек:</span>
+
+<input type="number" value="1" min="1" max="20" onchange="calculatePrice()" id="peopleCount">
+
+</div>
+
+<div class="calculator-row">
+
+<span>Базовая цена:</span>
+
+<span id="basePrice">$40</span>
+
+</div>
+
+<div class="calculator-row">
+
+<span>Скидка:</span>
+
+<span id="discountAmount">$0</span>
+
+</div>
+
+<div class="calculator-total">
+
+Итого: <span id="totalPrice">$40</span>
+
+</div>
+
+<!-- Discount Code -->
+
+<div class="discount-section">
+
+<div class="discount-input">
+
+<input type="text" placeholder="Промокод" id="discountCode">
+
+<button class="discount-btn" onclick="applyDiscount()">Применить</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- CLOCK -->
+
+<div id="clock"></div>
+
+<!-- FLOAT BUTTONS -->
+
+<div class="float-buttons">
+
+<a href="https://wa.me/998917089619"
+class="whatsapp">
+W
+</a>
+
+<a href="https://t.me/"
+class="telegram">
+T
+</a>
+
+<button onclick="toggleTheme()"
+class="theme-btn">
+🌙
+</button>
+
+</div>
+
+<!-- TOP -->
+
+<button id="topBtn">
+↑
+</button>
+
+<!-- LIGHTBOX -->
+
+<div class="lightbox" id="lightbox">
+
+<span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+
+<span class="lightbox-nav lightbox-prev" onclick="lightboxPrev()">&#10094;</span>
+
+<img src="" alt="" id="lightboxImage">
+
+<span class="lightbox-nav lightbox-next" onclick="lightboxNext()">&#10095;</span>
+
+</div>
+
+<!-- TOUR DETAILS MODAL -->
+
+<div class="modal" id="tourDetailsModal">
+
+<div class="modal-content tour-details-modal">
+
+<span class="close" onclick="closeTourDetails()">&times;</span>
+
+<h2 id="tourDetailsTitle">Название тура</h2>
+
+<div class="tour-details-content">
+
+<div class="tour-features">
+
+<div class="tour-feature">
+
+<div class="tour-feature-icon">📍</div>
+
+<div>Локация</div>
+
+</div>
+
+<div class="tour-feature">
+
+<div class="tour-feature-icon">⏱️</div>
+
+<div>Длительность</div>
+
+</div>
+
+<div class="tour-feature">
+
+<div class="tour-feature-icon">👥</div>
+
+<div>Группа</div>
+
+</div>
+
+<div class="tour-feature">
+
+<div class="tour-feature-icon">🏨</div>
+
+<div>Отель</div>
+
+</div>
+
+</div>
+
+<p id="tourDetailsDescription">Описание тура...</p>
+
+<div class="price-calculator">
+
+<div class="calculator-total">
+
+Цена: <span id="tourDetailsPrice">$0</span>
+
+</div>
+
+</div>
+
+<button onclick="openModal()">Забронировать</button>
+
+<button onclick="addToCompare()">Сравнить</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- MUSIC -->
+
+<audio id="bgMusic" loop>
+<source src="music.mp3" type="audio/mp3">
+</audio>
+
+<!-- MODAL -->
+
+<div class="modal" id="modal">
+
+<div class="modal-content">
+
+<span class="close"
+onclick="closeModal()">
+&times;
+</span>
+
+<h2 data-translate="book">
+Забронировать тур
+</h2>
+
+<form
+action="https://formspree.io/f/xqedjoqe"
+method="POST"
+enctype="multipart/form-data"
+>
+
+<input
+type="hidden"
+name="_captcha"
+value="false"
+>
+
+<input
+type="text"
+name="_gotcha"
+style="display:none"
+>
+
+<input
+type="text"
+name="name"
+placeholder="Ваше имя"
+required
+>
+
+<input
+type="tel"
+name="phone"
+placeholder="Телефон"
+required
+>
+
+<textarea
+name="message"
+rows="5"
+placeholder="Комментарий"
+></textarea>
+
+<input
+type="file"
+name="photo"
+accept="image/*"
+>
+
+<button type="submit">
+Отправить
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+<!-- FOOTER -->
+
+<footer>
+© 2026 Tours by Artur
+</footer>
+
+<script>
+
+/* LOADER */
+
+window.addEventListener("load", () => {
+
+document.getElementById("loader")
+.classList.add("hidden");
+
+});
+
+/* TRANSLATIONS */
+
+const translations = {
+
+ru:{
+
+hero_title:"Premium Uzbekistan Tours",
+
+hero_text:
+"Авторские путешествия по древним городам Узбекистана",
+
+book:"Забронировать",
+
+popular:"Популярные туры",
+
+bukhara:"Бухара",
+
+bukhara_text:
+"Исторический город с атмосферой восточной сказки.",
+
+khiva:"Хива",
+
+khiva_text:
+"Древний город-крепость под открытым небом.",
+
+mountains:"Горный тур",
+
+mountains_text:
+"Природа, озёра и горы Узбекистана."
+
+},
+
+es:{
+
+hero_title:
+"Tours Premium por Uzbekistán",
+
+hero_text:
+"Viajes únicos por las ciudades históricas de Uzbekistán",
+
+book:"Reservar",
+
+popular:"Tours populares",
+
+bukhara:"Bujará",
+
+bukhara_text:
+"Ciudad histórica con atmósfera oriental.",
+
+khiva:"Jiva",
+
+khiva_text:
+"Antigua ciudad fortaleza al aire libre.",
+
+mountains:"Tour de montaña",
+
+mountains_text:
+"Naturaleza, lagos y montañas de Uzbekistán."
+
+}
+
+};
+
+function setLanguage(lang){
+
+if(!translations[lang]) return;
+
+document
+.querySelectorAll("[data-translate]")
+.forEach(el => {
+
+const key =
+el.getAttribute("data-translate");
+
+if(translations[lang][key]){
+
+el.innerText =
+translations[lang][key];
+
+}
+
+});
+
+localStorage.setItem("lang", lang);
+
+}
+
+/* LOAD LANGUAGE */
+
+window.addEventListener("load", () => {
+
+const savedLang =
+localStorage.getItem("lang") || "ru";
+
+setLanguage(savedLang);
+
+});
+
+/* EMAIL */
+
+document.getElementById("email")
+.innerHTML =
+"📧 " + "arturamediev" + "@" + "gmail.com";
+
+/* MODAL */
+
+function openModal(){
+
+document.getElementById("modal")
+.style.display = "flex";
+
+}
+
+function closeModal(){
+
+document.getElementById("modal")
+.style.display = "none";
+
+}
+
+window.onclick = function(event){
+
+const modal =
+document.getElementById("modal");
+
+if(event.target === modal){
+
+closeModal();
+
+}
+
+}
+
+/* FORM */
+
+document
+.querySelector("form")
+.addEventListener("submit", function(e){
+
+const fileInput =
+document.querySelector("input[type='file']");
+
+if(fileInput && fileInput.files.length > 0){
+
+const file = fileInput.files[0];
+
+if(file.size > 5 * 1024 * 1024){
+
+e.preventDefault();
+
+alert("Максимум 5MB");
+
+return;
+
+}
+
+}
+
+setTimeout(() => {
+
+closeModal();
+
+alert("Заявка отправлена!");
+
+}, 500);
+
+});
+
+/* SLIDER */
+
+function nextSlide(id){
+
+const slider =
+document.getElementById(id);
+
+const slides =
+slider.querySelectorAll("img");
+
+let current =
+[...slides].findIndex(slide =>
+slide.classList.contains("active")
+);
+
+slides[current]
+.classList.remove("active");
+
+let next =
+(current + 1) % slides.length;
+
+slides[next]
+.classList.add("active");
+
+}
+
+function prevSlide(id){
+
+const slider =
+document.getElementById(id);
+
+const slides =
+slider.querySelectorAll("img");
+
+let current =
+[...slides].findIndex(slide =>
+slide.classList.contains("active")
+);
+
+slides[current]
+.classList.remove("active");
+
+let prev =
+(current - 1 + slides.length)
+% slides.length;
+
+slides[prev]
+.classList.add("active");
+
+}
+
+setInterval(() => {
+
+nextSlide("mainSlider");
+
+}, 5000);
+
+/* OPTIMIZED SCROLL HANDLER WITH DEBOUNCING */
+
+let scrollTimeout;
+const topBtn = document.getElementById("topBtn");
+const header = document.querySelector("header");
+const fadeEls = document.querySelectorAll(".fade-in");
+
+function handleScroll(){
+  const scrollY = window.scrollY;
+  
+  // Top button
+  topBtn.style.display = scrollY > 300 ? "block" : "none";
+  
+  // Header scroll effect
+  header.classList.toggle("scrolled", scrollY > 50);
+  
+  // Progress bar
+  const height = document.body.scrollHeight - window.innerHeight;
+  const percent = (scrollY / height) * 100;
+  document.getElementById("progressBar").style.width = percent + "%";
+  
+  // Fade animations
+  fadeEls.forEach(el => {
+    if(el.getBoundingClientRect().top < window.innerHeight - 100){
+      el.classList.add("show");
+    }
+  });
+}
+
+window.addEventListener("scroll", () => {
+  if(scrollTimeout) clearTimeout(scrollTimeout);
+  scrollTimeout = setTimeout(handleScroll, 16); // ~60fps
+}, { passive: true });
+
+topBtn.onclick = () => window.scrollTo({ top: 0, behavior: "smooth" });
+
+/* CLOCK - OPTIMIZED */
+
+setInterval(() => {
+  const clock = document.getElementById("clock");
+  if(clock) clock.innerText = new Date().toLocaleTimeString();
+}, 1000);
+
+/* THEME */
+
+function toggleTheme(){
+  document.body.classList.toggle("light");
+  localStorage.setItem("theme", document.body.classList.contains("light") ? "light" : "dark");
+}
+
+/* LOAD SAVED THEME */
+
+window.addEventListener("load", () => {
+  if(localStorage.getItem("theme") === "light"){
+    document.body.classList.add("light");
+  }
+});
+
+/* MOBILE MENU */
+
+function toggleMobileMenu(){
+  const menu = document.getElementById("mobileMenu");
+  const hamburger = document.querySelector(".hamburger");
+  menu.classList.toggle("active");
+  hamburger.classList.toggle("active");
+}
+
+/* SEARCH */
+
+function searchTours(query){
+  const cards = document.querySelectorAll(".card");
+  const searchTerm = query.toLowerCase();
+  
+  cards.forEach(card => {
+    const title = card.querySelector("h3").textContent.toLowerCase();
+    const desc = card.querySelector("p").textContent.toLowerCase();
+    const matches = title.includes(searchTerm) || desc.includes(searchTerm);
+    card.style.display = matches ? "block" : "none";
+  });
+}
+
+/* FILTERS */
+
+function filterTours(category){
+  const cards = document.querySelectorAll(".card");
+  const buttons = document.querySelectorAll(".filter-btn");
+  
+  buttons.forEach(btn => btn.classList.remove("active"));
+  event.target.classList.add("active");
+  
+  cards.forEach(card => {
+    if(category === "all" || card.dataset.category === category){
+      card.style.display = "block";
+    }else{
+      card.style.display = "none";
+    }
+  });
+}
+
+/* SORTING */
+
+function sortTours(sortBy){
+  const container = document.querySelector(".cards");
+  const cards = Array.from(container.children);
+  
+  cards.sort((a, b) => {
+    if(sortBy === "price-asc"){
+      return parseFloat(a.dataset.price) - parseFloat(b.dataset.price);
+    }else if(sortBy === "price-desc"){
+      return parseFloat(b.dataset.price) - parseFloat(a.dataset.price);
+    }else if(sortBy === "rating"){
+      return parseFloat(b.dataset.rating) - parseFloat(a.dataset.rating);
+    }
+    return 0;
+  });
+  
+  cards.forEach(card => container.appendChild(card));
+}
+
+/* FAVORITES */
+
+function toggleFavorite(btn, tourName){
+  btn.classList.toggle("active");
+  btn.textContent = btn.classList.contains("active") ? "♥" : "♡";
+  
+  let favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
+  if(btn.classList.contains("active")){
+    if(!favorites.includes(tourName)) favorites.push(tourName);
+  }else{
+    favorites = favorites.filter(t => t !== tourName);
+  }
+  localStorage.setItem("favorites", JSON.stringify(favorites));
+}
+
+/* LIGHTBOX */
+
+let lightboxImages = [];
+let currentLightboxIndex = 0;
+
+function openLightbox(src){
+  const lightbox = document.getElementById("lightbox");
+  const img = document.getElementById("lightboxImage");
+  
+  lightboxImages = Array.from(document.querySelectorAll(".card img")).map(img => img.src);
+  currentLightboxIndex = lightboxImages.indexOf(src);
+  
+  img.src = src;
+  lightbox.classList.add("active");
+}
+
+function closeLightbox(){
+  document.getElementById("lightbox").classList.remove("active");
+}
+
+function lightboxNext(){
+  currentLightboxIndex = (currentLightboxIndex + 1) % lightboxImages.length;
+  document.getElementById("lightboxImage").src = lightboxImages[currentLightboxIndex];
+}
+
+function lightboxPrev(){
+  currentLightboxIndex = (currentLightboxIndex - 1 + lightboxImages.length) % lightboxImages.length;
+  document.getElementById("lightboxImage").src = lightboxImages[currentLightboxIndex];
+}
+
+/* TOUR DETAILS */
+
+let currentTour = null;
+
+function openTourDetails(name, price, category){
+  const modal = document.getElementById("tourDetailsModal");
+  document.getElementById("tourDetailsTitle").textContent = name;
+  document.getElementById("tourDetailsPrice").textContent = "$" + price;
+  document.getElementById("tourDetailsDescription").textContent = 
+    category === "city" ? "Увлекательная экскурсия по древнему городу с посещением исторических памятников и архитектурных шедевров." : 
+    "Незабываемое путешествие в горы Узбекистана с живописными видами, озерами и национальной кухней.";
+  currentTour = { name, price };
+  modal.style.display = "flex";
+}
+
+function closeTourDetails(){
+  document.getElementById("tourDetailsModal").style.display = "none";
+}
+
+/* FAQ */
+
+function toggleFaq(item){
+  item.classList.toggle("active");
+}
+
+/* RATING */
+
+let currentRating = 0;
+
+function setRating(rating){
+  currentRating = rating;
+  const stars = document.querySelectorAll("#ratingStars span");
+  stars.forEach((star, index) => {
+    star.classList.toggle("active", index < rating);
+  });
+}
+
+function setReviewRating(rating){
+  const stars = document.querySelectorAll("#reviewRating span");
+  stars.forEach((star, index) => {
+    star.classList.toggle("active", index < rating);
+  });
+}
+
+function submitReview(){
+  alert("Спасибо за ваш отзыв!");
+}
+
+/* COUNTDOWN */
+
+function startCountdown(){
+  const endDate = new Date();
+  endDate.setDate(endDate.getDate() + 7);
+  
+  function update(){
+    const now = new Date();
+    const diff = endDate - now;
+    
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+    
+    document.getElementById("days").textContent = String(days).padStart(2, "0");
+    document.getElementById("hours").textContent = String(hours).padStart(2, "0");
+    document.getElementById("minutes").textContent = String(minutes).padStart(2, "0");
+    document.getElementById("seconds").textContent = String(seconds).padStart(2, "0");
+  }
+  
+  update();
+  setInterval(update, 1000);
+}
+
+startCountdown();
+
+/* CALENDAR */
+
+let currentDate = new Date();
+
+function renderCalendar(){
+  const grid = document.getElementById("calendarGrid");
+  const monthNames = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"];
+  
+  document.getElementById("calendarMonth").textContent = monthNames[currentDate.getMonth()] + " " + currentDate.getFullYear();
+  
+  grid.innerHTML = "";
+  
+  const firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1).getDay();
+  const daysInMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
+  
+  for(let i = 0; i < firstDay; i++){
+    grid.innerHTML += "<div></div>";
+  }
+  
+  for(let day = 1; day <= daysInMonth; day++){
+    const dayEl = document.createElement("div");
+    dayEl.className = "calendar-day";
+    dayEl.textContent = day;
+    dayEl.onclick = () => {
+      document.querySelectorAll(".calendar-day").forEach(d => d.classList.remove("selected"));
+      dayEl.classList.add("selected");
+    };
+    grid.appendChild(dayEl);
+  }
+}
+
+function changeMonth(delta){
+  currentDate.setMonth(currentDate.getMonth() + delta);
+  renderCalendar();
+}
+
+renderCalendar();
+
+/* PRICE CALCULATOR */
+
+let basePrice = 40;
+let discount = 0;
+
+function calculatePrice(){
+  const people = parseInt(document.getElementById("peopleCount").value) || 1;
+  const total = (basePrice * people) - discount;
+  document.getElementById("totalPrice").textContent = "$" + total;
+}
+
+function applyDiscount(){
+  const code = document.getElementById("discountCode").value.toUpperCase();
+  if(code === "SALE10"){
+    discount = basePrice * 0.1;
+    document.getElementById("discountAmount").textContent = "$" + discount;
+    calculatePrice();
+    alert("Скидка применена!");
+  }else{
+    alert("Неверный промокод");
+  }
+}
+
+/* NEWSLETTER */
+
+function subscribeNewsletter(e){
+  e.preventDefault();
+  alert("Спасибо за подписку!");
+  e.target.reset();
+}
+
+/* SOCIAL SHARING */
+
+function shareToFacebook(){
+  window.open("https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(window.location.href), "_blank");
+}
+
+function shareToTwitter(){
+  window.open("https://twitter.com/intent/tweet?url=" + encodeURIComponent(window.location.href), "_blank");
+}
+
+function shareToWhatsApp(){
+  window.open("https://wa.me/?text=" + encodeURIComponent(window.location.href), "_blank");
+}
+
+function shareToTelegram(){
+  window.open("https://t.me/share/url?url=" + encodeURIComponent(window.location.href), "_blank");
+}
+
+/* TESTIMONIAL CAROUSEL */
+
+let currentSlide = 0;
+const slides = document.querySelectorAll(".testimonial-slide");
+const dotsContainer = document.getElementById("carouselDots");
+
+function initCarousel(){
+  slides.forEach((_, i) => {
+    const dot = document.createElement("div");
+    dot.className = "carousel-dot" + (i === 0 ? " active" : "");
+    dot.onclick = () => goToSlide(i);
+    dotsContainer.appendChild(dot);
+  });
+}
+
+function goToSlide(index){
+  currentSlide = index;
+  document.getElementById("testimonialTrack").style.transform = "translateX(-" + (index * 100) + "%)";
+  
+  document.querySelectorAll(".carousel-dot").forEach((dot, i) => {
+    dot.classList.toggle("active", i === index);
+  });
+}
+
+function nextSlideCarousel(){
+  currentSlide = (currentSlide + 1) % slides.length;
+  goToSlide(currentSlide);
+}
+
+initCarousel();
+setInterval(nextSlideCarousel, 5000);
+
+/* PRELOAD */
+
+const images = [
+
+"Bukhara 1.jpg",
+"photo_2026-02-23_01-36-31.jpg",
+"photo_2026-02-23_23-29-31.jpg",
+"efe253aa43b8c95b0b17234a6248b66b.jpg",
+"0ad25e08c074b476f8cf40d079dabf2f.jpg",
+"3f1296d9fa554f5d38dd246eba2dcada.jpg",
+"7121fd116a687099bcee8f5882f4afdc.jpg"
+
+];
+
+images.forEach(src => {
+
+const img = new Image();
+
+img.src = src;
+
+});
+
+</script>
+
+</body>
+</html>
