@@ -270,6 +270,12 @@ nav a:hover{
   opacity:0.9;
 }
 
+.hero-actions{
+  margin-top:30px;
+  display:flex;
+  justify-content:center;
+}
+
 .price-badge{
   background:var(--gradient-1);
   color:white;
@@ -304,6 +310,10 @@ nav a:hover{
 /* BUTTONS */
 
 button{
+  outline:none;
+}
+
+button.btn{
   border:none;
   padding:16px 32px;
   border-radius:14px;
@@ -318,7 +328,7 @@ button{
   overflow:hidden;
 }
 
-button::before{
+button.btn::before{
   content:'';
   position:absolute;
   top:0;
@@ -329,13 +339,18 @@ button::before{
   transition:0.5s;
 }
 
-button:hover::before{
+button.btn:hover::before{
   left:100%;
 }
 
-button:hover{
+button.btn:hover{
   transform:translateY(-5px);
   box-shadow:0 15px 35px rgba(102, 126, 234, 0.5);
+}
+
+.card-content button.btn{
+  width:100%;
+  margin-top:24px;
 }
 
 /* SECTIONS */
@@ -943,6 +958,14 @@ footer p{
   gap:15px;
   margin-bottom:30px;
   justify-content:center;
+  align-items:center;
+}
+
+.filters-group{
+  display:flex;
+  flex-wrap:wrap;
+  gap:15px;
+  justify-content:center;
 }
 
 .filter-btn{
@@ -1481,7 +1504,7 @@ footer p{
 
 <!-- LOADER -->
 
-<div class="loader" id="loader">
+<div class="loader hidden" id="loader">
   <div class="loader-circle"></div>
 </div>
 
@@ -1507,13 +1530,15 @@ footer p{
 
 <nav>
 
-<a href="#tours">Туры</a>
+<a href="#tours" data-translate="nav_tours">Туры</a>
 
-<a href="#gallery">Галерея</a>
+<a href="#gallery" data-translate="nav_gallery">Галерея</a>
 
-<a href="#reviews">Отзывы</a>
+<a href="#reviews" data-translate="nav_reviews">Отзывы</a>
 
-<a href="#contacts">Контакты</a>
+<a href="#ourTravelers" data-translate="nav_our_travelers">Наши туристы</a>
+
+<a href="#contacts" data-translate="nav_contacts">Контакты</a>
 
 </nav>
 
@@ -1529,13 +1554,15 @@ footer p{
 
 <div class="mobile-menu" id="mobileMenu">
 
-<a href="#tours" onclick="toggleMobileMenu()">Туры</a>
+<a href="#tours" onclick="toggleMobileMenu()" data-translate="nav_tours">Туры</a>
 
-<a href="#gallery" onclick="toggleMobileMenu()">Галерея</a>
+<a href="#gallery" onclick="toggleMobileMenu()" data-translate="nav_gallery">Галерея</a>
 
-<a href="#reviews" onclick="toggleMobileMenu()">Отзывы</a>
+<a href="#reviews" onclick="toggleMobileMenu()" data-translate="nav_reviews">Отзывы</a>
 
-<a href="#contacts" onclick="toggleMobileMenu()">Контакты</a>
+<a href="#ourTravelers" onclick="toggleMobileMenu()" data-translate="nav_our_travelers">Наши туристы</a>
+
+<a href="#contacts" onclick="toggleMobileMenu()" data-translate="nav_contacts">Контакты</a>
 
 </div>
 
@@ -1561,9 +1588,11 @@ Premium Uzbekistan Tours
 от 40$
 </div>
 
-<button onclick="openModal()" data-translate="book">
-Забронировать
-</button>
+<div class="hero-actions">
+  <button class="btn" onclick="openModal()" data-translate="book">
+    Забронировать
+  </button>
+</div>
 
 </div>
 
@@ -1581,7 +1610,7 @@ Premium Uzbekistan Tours
 
 <div class="search-container">
 
-<input type="text" class="search-input" placeholder="Поиск туров..." oninput="searchTours(this.value)">
+<input type="text" class="search-input" data-translate="search_placeholder" placeholder="Поиск туров..." oninput="searchTours(this.value)">
 
 <span class="search-icon">🔍</span>
 
@@ -1590,24 +1619,22 @@ Premium Uzbekistan Tours
 <!-- Filters & Sorting -->
 
 <div class="filters-container">
+  <div class="filters-group">
+    <button class="filter-btn active" onclick="filterTours('all', event)" data-translate="filter_all">Все</button>
+    <button class="filter-btn" onclick="filterTours('city', event)" data-translate="filter_city">Города</button>
+    <button class="filter-btn" onclick="filterTours('nature', event)" data-translate="filter_nature">Природа</button>
+    <button class="filter-btn" onclick="filterTours('culture', event)" data-translate="filter_culture">Культура</button>
+    <button class="filter-btn" onclick="filterTours('transport', event)" data-translate="filter_transport">Транспорт</button>
+  </div>
+  <select class="sort-select" onchange="sortTours(this.value)">
 
-<button class="filter-btn active" onclick="filterTours('all')">Все</button>
+<option value="default" data-translate="sort_default">Сортировка</option>
 
-<button class="filter-btn" onclick="filterTours('city')">Города</button>
+<option value="price-asc" data-translate="sort_price_asc">Цена: по возрастанию</option>
 
-<button class="filter-btn" onclick="filterTours('nature')">Природа</button>
+<option value="price-desc" data-translate="sort_price_desc">Цена: по убыванию</option>
 
-<button class="filter-btn" onclick="filterTours('culture')">Культура</button>
-
-<select class="sort-select" onchange="sortTours(this.value)">
-
-<option value="default">Сортировка</option>
-
-<option value="price-asc">Цена: по возрастанию</option>
-
-<option value="price-desc">Цена: по убыванию</option>
-
-<option value="rating">Рейтинг</option>
+<option value="rating" data-translate="sort_rating">Рейтинг</option>
 
 </select>
 
@@ -1617,7 +1644,7 @@ Premium Uzbekistan Tours
 
 <div class="card" data-category="city" data-price="40" data-rating="5">
 
-<button class="favorite-btn" onclick="toggleFavorite(this, 'Бухара')">♡</button>
+<button class="favorite-btn" onclick="toggleFavorite(this, 'bukhara')">♡</button>
 
 <img src="Bukhara 1.jpg" onclick="openLightbox(this.src)">
 
@@ -1631,7 +1658,7 @@ Premium Uzbekistan Tours
 Исторический город с атмосферой восточной сказки.
 </p>
 
-<button onclick="openTourDetails('Бухара', 40, 'city')">Подробнее</button>
+<button class="btn" onclick="openTourDetails('bukhara', 40, 'city')" data-translate="details">Подробнее</button>
 
 </div>
 
@@ -1641,7 +1668,7 @@ Premium Uzbekistan Tours
 
 <button class="favorite-btn" onclick="toggleFavorite(this, 'Хива')">♡</button>
 
-<img src="photo_2026-02-23_20-55-50.jpg" onclick="openLightbox(this.src)">
+<img src="a492247287cbe2b97c041a410934f851.jpg" onclick="openLightbox(this.src)">
 
 <div class="card-content">
 
@@ -1653,51 +1680,46 @@ Premium Uzbekistan Tours
 Древний город-крепость под открытым небом.
 </p>
 
-<button onclick="openTourDetails('Хива', 45, 'city')">Подробнее</button>
+<button class="btn" onclick="openTourDetails('Хива', 45, 'city')" data-translate="details">Подробнее</button>
 
 </div>
 
 </div>
 
-<div class="card" data-category="nature" data-price="55" data-rating="5">
+<div class="card" data-category="city" data-price="45" data-rating="4">
 
-<button class="favorite-btn" onclick="toggleFavorite(this, 'Горный тур')">♡</button>
+<button class="favorite-btn" onclick="toggleFavorite(this, 'khiva')">♡</button>
 
-<img src="photo_2026-02-23_23-29-31.jpg" onclick="openLightbox(this.src)">
+<img src="Khiva 1.jpg" onclick="openLightbox(this.src)">
 
 <div class="card-content">
 
-<h3 data-translate="mountains">
-Горный тур
+<h3 data-translate="khiva">
+Хива
 </h3>
 
-<p data-translate="mountains_text">
-Природа, озёра и горы Узбекистана.
+<p data-translate="khiva_text">
+Древний город-крепость под открытым небом.
 </p>
 
-<button onclick="openTourDetails('Горный тур', 55, 'nature')">Подробнее</button>
+<button class="btn" onclick="openTourDetails('khiva', 45, 'city')" data-translate="details">Подробнее</button>
 
 </div>
 
 </div>
-
 <div class="card" data-category="city" data-price="50" data-rating="5">
 
-<button class="favorite-btn" onclick="toggleFavorite(this, 'Самарканд')">♡</button>
+<button class="favorite-btn" onclick="toggleFavorite(this, 'samarkand')">♡</button>
 
 <img src="efe253aa43b8c95b0b17234a6248b66b.jpg" onclick="openLightbox(this.src)">
 
 <div class="card-content">
 
-<h3>
-Самарканд
-</h3>
+<h3 data-translate="samarkand">Самарканд</h3>
 
-<p>
-Древний город на Великом шелковом пути с величественными архитектурными памятниками.
-</p>
+<p data-translate="samarkand_text">Древний город на Великом шелковом пути с величественными архитектурными памятниками.</p>
 
-<button onclick="openTourDetails('Самарканд', 50, 'city')">Подробнее</button>
+<button class="btn" onclick="openTourDetails('samarkand', 50, 'city')" data-translate="details">Подробнее</button>
 
 </div>
 
@@ -1705,21 +1727,17 @@ Premium Uzbekistan Tours
 
 <div class="card" data-category="nature" data-price="60" data-rating="5">
 
-<button class="favorite-btn" onclick="toggleFavorite(this, 'Озера')">♡</button>
+<button class="favorite-btn" onclick="toggleFavorite(this, 'lakes')">♡</button>
 
-<img src="0ad25e08c074b476f8cf40d079dabf2f.jpg" onclick="openLightbox(this.src)">
+<img src="9dbf54c7e797b3804211bf946fde8b54.jpg" onclick="openLightbox(this.src)">
 
 <div class="card-content">
 
-<h3>
-Горные озера
-</h3>
+<h3 data-translate="lakes">Горные озера</h3>
 
-<p>
-Уникальные горные озера с кристально чистой водой и живописными видами.
-</p>
+<p data-translate="lakes_text">Уникальные горные озера с кристально чистой водой и живописными видами.</p>
 
-<button onclick="openTourDetails('Горные озера', 60, 'nature')">Подробнее</button>
+<button class="btn" onclick="openTourDetails('lakes', 60, 'nature')" data-translate="details">Подробнее</button>
 
 </div>
 
@@ -1727,22 +1745,17 @@ Premium Uzbekistan Tours
 
 <div class="card" data-category="culture" data-price="48" data-rating="4">
 
-<button class="favorite-btn" onclick="toggleFavorite(this, 'Культура')">♡</button>
+<button class="favorite-btn" onclick="toggleFavorite(this, 'culture_tour')">♡</button>
 
 <img src="3f1296d9fa554f5d38dd246eba2dcada.jpg" onclick="openLightbox(this.src)">
 
 <div class="card-content">
 
-<h3>
-Культурный тур
-</h3>
+<h3 data-translate="culture_tour">Культурный тур</h3>
 
-<p>
+<p data-translate="culture_tour_text">Погружение в богатую культуру и традиции узбекского народа.</p>
 
-Погружение в богатую культуру и традиции узбекского народа.
-</p>
-
-<button onclick="openTourDetails('Культурный тур', 48, 'culture')">Подробнее</button>
+<button class="btn" onclick="openTourDetails('culture_tour', 48, 'culture')" data-translate="details">Подробнее</button>
 
 </div>
 
@@ -1750,21 +1763,37 @@ Premium Uzbekistan Tours
 
 <div class="card" data-category="city" data-price="52" data-rating="5">
 
-<button class="favorite-btn" onclick="toggleFavorite(this, 'Ташкент')">♡</button>
+<button class="favorite-btn" onclick="toggleFavorite(this, 'tashkent')">♡</button>
 
 <img src="7121fd116a687099bcee8f5882f4afdc.jpg" onclick="openLightbox(this.src)">
 
 <div class="card-content">
 
-<h3>
-Ташкент
-</h3>
+<h3 data-translate="tashkent">Ташкент</h3>
 
-<p>
-Современная столица Узбекистана с blend of ancient and modern architecture.
-</p>
+<p data-translate="tashkent_text">Современная столица Узбекистана с сочетанием древней и современной архитектуры.</p>
 
-<button onclick="openTourDetails('Ташкент', 52, 'city')">Подробнее</button>
+<button class="btn" onclick="openTourDetails('tashkent', 52, 'city')" data-translate="details">Подробнее</button>
+
+</div>
+
+</div>
+
+<div class="card" data-category="transport" data-price="15" data-rating="5">
+
+<button class="favorite-btn" onclick="toggleFavorite(this, 'transfer')">♡</button>
+
+<img src="291ce8b68dc17a1f6b81f82e70ec3057.jpg" onclick="openLightbox(this.src)">
+
+<div class="card-content">
+
+<h3 data-translate="transfer">Трансфер: вокзал → отель</h3>
+
+<p data-translate="transfer_text">Комфортный трансфер из вокзала или аэропорта прямо до вашего отеля. Быстро, удобно и безопасно.</p>
+
+<button class="btn" onclick="openTourDetails('transfer', 15, 'transport')" data-translate="details">Подробнее</button>
+
+</div>
 
 </div>
 
@@ -1778,7 +1807,7 @@ Premium Uzbekistan Tours
 
 <section class="section fade-in" id="gallery">
 
-<h2 class="section-title">
+<h2 class="section-title" data-translate="gallery_title">
 Галерея
 </h2>
 
@@ -1814,11 +1843,39 @@ onclick="nextSlide('mainSlider')">
 
 </section>
 
+<!-- OUR TRAVELERS -->
+
+<section class="section fade-in" id="ourTravelers">
+
+<h2 class="section-title" data-translate="our_travelers_title">
+Наши туристы
+</h2>
+
+<div class="slider" id="travelersSlider">
+
+<img src="photo_2026-05-23_18-07-45.jpg" class="active" onclick="openLightbox(this.src)">
+
+<img src="photo_2026-05-23_18-08-03.jpg" onclick="openLightbox(this.src)">
+
+<img src="photo_2026-05-23_18-08-14.jpg" onclick="openLightbox(this.src)">
+
+<img src="photo_2026-05-23_18-08-25.jpg" onclick="openLightbox(this.src)">
+
+<img src="photo_2026-05-23_18-08-35.jpg" onclick="openLightbox(this.src)">
+
+<button class="slider-btn prev" onclick="prevSlide('travelersSlider')">&#10094;</button>
+
+<button class="slider-btn next" onclick="nextSlide('travelersSlider')">&#10095;</button>
+
+</div>
+
+</section>
+
 <!-- REVIEWS -->
 
 <section class="section fade-in" id="reviews">
 
-<h2 class="section-title">
+<h2 class="section-title" data-translate="reviews_title">
 Отзывы
 </h2>
 
@@ -1896,7 +1953,7 @@ Excelente organización y atención.
 
 <div class="review-form">
 
-<h3>Оставить отзыв</h3>
+<h3 data-translate="review_form_title">Оставить отзыв</h3>
 
 <textarea placeholder="Ваш отзыв..."></textarea>
 
@@ -1914,7 +1971,7 @@ Excelente organización y atención.
 
 </div>
 
-<button onclick="submitReview()">Отправить отзыв</button>
+<button onclick="submitReview()" data-translate="submit_review">Отправить отзыв</button>
 
 </div>
 
@@ -1924,7 +1981,7 @@ Excelente organización y atención.
 
 <section class="section fade-in" id="contacts">
 
-<h2 class="section-title">
+<h2 class="section-title" data-translate="contacts_title">
 Контакты
 </h2>
 
@@ -1958,7 +2015,7 @@ Excelente organización y atención.
 
 <section class="section fade-in" id="faq">
 
-<h2 class="section-title">
+<h2 class="section-title" data-translate="faq_title">
 Частые вопросы
 </h2>
 
@@ -2028,15 +2085,15 @@ Excelente organización y atención.
 
 <div class="newsletter-section">
 
-<h2>Подпишитесь на новости</h2>
+<h2 data-translate="newsletter_title">Подпишитесь на новости</h2>
 
-<p>Получайте специальные предложения и скидки</p>
+<p data-translate="newsletter_text">Получайте специальные предложения и скидки</p>
 
 <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
 
-<input type="email" placeholder="Ваш email" required>
+<input type="email" data-translate="newsletter_placeholder" placeholder="Ваш email" required>
 
-<button type="submit">Подписаться</button>
+<button type="submit" data-translate="submit">Подписаться</button>
 
 </form>
 
@@ -2056,7 +2113,7 @@ Excelente organización y atención.
 
 <div class="countdown-number" id="days">00</div>
 
-<div class="countdown-label">Дней</div>
+<div class="countdown-label" data-translate="days_label">Дней</div>
 
 </div>
 
@@ -2064,7 +2121,7 @@ Excelente organización y atención.
 
 <div class="countdown-number" id="hours">00</div>
 
-<div class="countdown-label">Часов</div>
+<div class="countdown-label" data-translate="hours_label">Часов</div>
 
 </div>
 
@@ -2072,7 +2129,7 @@ Excelente organización y atención.
 
 <div class="countdown-number" id="minutes">00</div>
 
-<div class="countdown-label">Минут</div>
+<div class="countdown-label" data-translate="minutes_label">Минут</div>
 
 </div>
 
@@ -2080,7 +2137,7 @@ Excelente organización y atención.
 
 <div class="countdown-number" id="seconds">00</div>
 
-<div class="countdown-label">Секунд</div>
+<div class="countdown-label" data-translate="seconds_label">Секунд</div>
 
 </div>
 
@@ -2092,7 +2149,7 @@ Excelente organización y atención.
 
 <section class="section fade-in">
 
-<h2 class="section-title">Выберите дату</h2>
+<h2 class="section-title" data-translate="choose_date">Выберите дату</h2>
 
 <div class="calendar-container">
 
@@ -2122,7 +2179,7 @@ Excelente organización y atención.
 
 <div class="calculator-row">
 
-<span>Количество человек:</span>
+<span data-translate="people_label">Количество человек:</span>
 
 <input type="number" value="1" min="1" max="20" onchange="calculatePrice()" id="peopleCount">
 
@@ -2130,7 +2187,7 @@ Excelente organización y atención.
 
 <div class="calculator-row">
 
-<span>Базовая цена:</span>
+<span data-translate="base_price_label">Базовая цена:</span>
 
 <span id="basePrice">$40</span>
 
@@ -2138,13 +2195,13 @@ Excelente organización y atención.
 
 <div class="calculator-row">
 
-<span>Скидка:</span>
-
+<span data-translate="discount_label">Скидка:</span>
+ 
 <span id="discountAmount">$0</span>
 
 </div>
 
-<div class="calculator-total">
+<div class="calculator-total" data-translate="total_label">
 
 Итого: <span id="totalPrice">$40</span>
 
@@ -2156,9 +2213,9 @@ Excelente organización y atención.
 
 <div class="discount-input">
 
-<input type="text" placeholder="Промокод" id="discountCode">
+<input type="text" placeholder="Промокод" id="discountCode" data-translate="discount_placeholder">
 
-<button class="discount-btn" onclick="applyDiscount()">Применить</button>
+<button class="discount-btn" onclick="applyDiscount()" data-translate="apply_discount">Применить</button>
 
 </div>
 
@@ -2181,8 +2238,8 @@ class="whatsapp">
 W
 </a>
 
-<a href="https://t.me/"
-class="telegram">
+<a href="https://t.me/vassabi_9"
+class="telegram" target="_blank" rel="noopener noreferrer">
 T
 </a>
 
@@ -2273,9 +2330,9 @@ class="theme-btn">
 
 </div>
 
-<button onclick="openModal()">Забронировать</button>
+<button onclick="openModal()" data-translate="book">Забронировать</button>
 
-<button onclick="addToCompare()">Сравнить</button>
+<button onclick="addToCompare()" data-translate="compare">Сравнить</button>
 
 </div>
 
@@ -2304,7 +2361,7 @@ onclick="closeModal()">
 Забронировать тур
 </h2>
 
-<form
+<form id="bookingForm"
 action="https://formspree.io/f/xqedjoqe"
 method="POST"
 enctype="multipart/form-data"
@@ -2326,6 +2383,7 @@ style="display:none"
 type="text"
 name="name"
 placeholder="Ваше имя"
+data-translate="booking_name_placeholder"
 required
 >
 
@@ -2333,6 +2391,7 @@ required
 type="tel"
 name="phone"
 placeholder="Телефон"
+data-translate="booking_phone_placeholder"
 required
 >
 
@@ -2340,6 +2399,7 @@ required
 name="message"
 rows="5"
 placeholder="Комментарий"
+data-translate="booking_message_placeholder"
 ></textarea>
 
 <input
@@ -2348,7 +2408,7 @@ name="photo"
 accept="image/*"
 >
 
-<button type="submit">
+<button type="submit" data-translate="submit">
 Отправить
 </button>
 
@@ -2361,7 +2421,7 @@ accept="image/*"
 <!-- FOOTER -->
 
 <footer>
-© 2026 Tours by Artur
+<div data-translate="footer_text">© 2026 Tours by Artur</div>
 </footer>
 
 <script>
@@ -2404,8 +2464,31 @@ mountains:"Горный тур",
 
 mountains_text:
 "Природа, озёра и горы Узбекистана."
+,samarkand: "Самарканд",
+samarkand_text: "Древний город на Великом Шёлковом пути, центр науки, культуры и архитектуры с величественными памятниками.",
+
+tashkent: "Ташкент",
+tashkent_text: "Столица Узбекистана — сочетание древних традиций и современной архитектуры, важный культурный и экономический центр.",
+
+lakes: "Горные озёра",
+lakes_text: "Уникальные высокогорные озёра с кристально чистой водой и живописными панорамами.",
+
+culture_tour: "Культурный тур",
+culture_tour_text: "Погружение в ремёсла, кулинарию и традиции узбекского народа.",
+
+,nav_our_travelers: "Наши туристы",
+our_travelers_title: "Наши туристы"
+
+// alerts and misc
+,max_file_size: "Максимум 5MB",
+form_sent: "Заявка отправлена!",
+review_thanks: "Спасибо за ваш отзыв!",
+discount_applied: "Скидка применена!",
+invalid_promo: "Неверный промокод",
+newsletter_thanks: "Спасибо за подписку!"
 
 },
+
 
 es:{
 
@@ -2432,7 +2515,72 @@ khiva_text:
 mountains:"Tour de montaña",
 
 mountains_text:
-"Naturaleza, lagos y montañas de Uzbekistán."
+"Naturaleza, lagos y montañas de Uzbekistán.",
+
+// extra keys for site
+search_placeholder: "Buscar tours...",
+filter_all: "Todos",
+filter_city: "Ciudades",
+filter_nature: "Naturaleza",
+filter_culture: "Cultura",
+filter_transport: "Transporte",
+samarkand: "Samarcanda",
+samarkand_text: "Antigua ciudad en la Ruta de la Seda con monumentos arquitectónicos majestuosos.",
+lakes: "Lagos de montaña",
+lakes_text: "Lagos de montaña únicos con agua cristalina y vistas pintorescas.",
+culture_tour: "Tour cultural",
+culture_tour_text: "Inmersión en la rica cultura y tradiciones del pueblo uzbeko.",
+tashkent: "Taskent",
+tashkent_text: "La capital moderna de Uzbekistán con mezcla de arquitectura antigua y moderna.",
+transfer: "Traslado: estación → hotel",
+transfer_text: "Traslado cómodo desde la estación o aeropuerto directamente hasta su hotel.",
+details: "Más información",
+submit: "Enviar",
+book: "Reservar",
+newsletter_placeholder: "Tu email",
+booking_name_placeholder: "Tu nombre",
+booking_phone_placeholder: "Teléfono",
+booking_message_placeholder: "Comentario"
+
+,nav_tours: "Tours",
+nav_gallery: "Galería",
+nav_reviews: "Opiniones",
+nav_our_travelers: "Nuestros viajeros",
+nav_contacts: "Contactos",
+sort_default: "Ordenar",
+sort_price_asc: "Precio: de menor a mayor",
+sort_price_desc: "Precio: de mayor a menor",
+sort_rating: "Valoración",
+gallery_title: "Galería",
+our_travelers_title: "Nuestros viajeros",
+reviews_title: "Opiniones",
+review_form_title: "Dejar una reseña",
+newsletter_title: "Suscríbete a nuestras novedades",
+newsletter_text: "Recibe ofertas especiales y descuentos",
+days_label: "Días",
+hours_label: "Horas",
+minutes_label: "Minutos",
+seconds_label: "Segundos",
+choose_date: "Elige una fecha",
+people_label: "Número de personas:",
+base_price_label: "Precio base:",
+discount_label: "Descuento:",
+total_label: "Total:",
+discount_placeholder: "Código promocional",
+apply_discount: "Aplicar",
+footer_text: "© 2026 Tours by Artur"
+
+,details: "Más información",
+compare: "Comparar",
+submit_review: "Enviar reseña",
+book: "Reservar"
+
+,max_file_size: "Máximo 5MB",
+form_sent: "¡Solicitud enviada!",
+review_thanks: "¡Gracias por tu reseña!",
+discount_applied: "¡Descuento aplicado!",
+invalid_promo: "Código promocional inválido",
+newsletter_thanks: "¡Gracias por suscribirte!"
 
 }
 
@@ -2440,26 +2588,41 @@ mountains_text:
 
 function setLanguage(lang){
 
-if(!translations[lang]) return;
+  if(!translations[lang]) return;
 
-document
-.querySelectorAll("[data-translate]")
-.forEach(el => {
+  document
+    .querySelectorAll("[data-translate]")
+    .forEach(el => {
 
-const key =
-el.getAttribute("data-translate");
+      const key = el.getAttribute("data-translate");
 
-if(translations[lang][key]){
+      // prefer direct translation key in chosen lang
+      let value = translations[lang][key];
 
-el.innerText =
-translations[lang][key];
+      // fallback to es_extra if available (for extended keys)
+      if(!value && translations[lang + '_extra'] && translations[lang + '_extra'][key]){
+        value = translations[lang + '_extra'][key];
+      }
+
+      if(!value) return;
+
+      const tag = el.tagName.toLowerCase();
+      if(tag === 'input' || tag === 'textarea'){
+        el.placeholder = value;
+      }else{
+        el.innerText = value;
+      }
+
+    });
+
+  localStorage.setItem("lang", lang);
 
 }
 
-});
-
-localStorage.setItem("lang", lang);
-
+function t(key){
+  const lang = localStorage.getItem('lang') || 'ru';
+  if(translations[lang] && translations[lang][key]) return translations[lang][key];
+  return key;
 }
 
 /* LOAD LANGUAGE */
@@ -2510,9 +2673,9 @@ closeModal();
 
 /* FORM */
 
-document
-.querySelector("form")
-.addEventListener("submit", function(e){
+const bookingForm = document.getElementById("bookingForm");
+if(bookingForm){
+  bookingForm.addEventListener("submit", function(e){
 
 const fileInput =
 document.querySelector("input[type='file']");
@@ -2525,7 +2688,7 @@ if(file.size > 5 * 1024 * 1024){
 
 e.preventDefault();
 
-alert("Максимум 5MB");
+alert(t('max_file_size'));
 
 return;
 
@@ -2537,11 +2700,12 @@ setTimeout(() => {
 
 closeModal();
 
-alert("Заявка отправлена!");
+alert(t('form_sent'));
 
 }, 500);
 
-});
+  });
+}
 
 /* SLIDER */
 
@@ -2683,13 +2847,13 @@ function searchTours(query){
 
 /* FILTERS */
 
-function filterTours(category){
+function filterTours(category, ev){
   const cards = document.querySelectorAll(".card");
   const buttons = document.querySelectorAll(".filter-btn");
-  
+
   buttons.forEach(btn => btn.classList.remove("active"));
-  event.target.classList.add("active");
-  
+  if(ev && ev.target) ev.target.classList.add("active");
+
   cards.forEach(card => {
     if(category === "all" || card.dataset.category === category){
       card.style.display = "block";
@@ -2721,15 +2885,15 @@ function sortTours(sortBy){
 
 /* FAVORITES */
 
-function toggleFavorite(btn, tourName){
+function toggleFavorite(btn, tourKey){
   btn.classList.toggle("active");
   btn.textContent = btn.classList.contains("active") ? "♥" : "♡";
-  
+
   let favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
   if(btn.classList.contains("active")){
-    if(!favorites.includes(tourName)) favorites.push(tourName);
+    if(!favorites.includes(tourKey)) favorites.push(tourKey);
   }else{
-    favorites = favorites.filter(t => t !== tourName);
+    favorites = favorites.filter(t => t !== tourKey);
   }
   localStorage.setItem("favorites", JSON.stringify(favorites));
 }
@@ -2743,10 +2907,20 @@ function openLightbox(src){
   const lightbox = document.getElementById("lightbox");
   const img = document.getElementById("lightboxImage");
   
-  lightboxImages = Array.from(document.querySelectorAll(".card img")).map(img => img.src);
+  // include all images on page (cards, gallery, travelers)
+  lightboxImages = Array.from(document.querySelectorAll("img")).map(i => i.src);
+
+  // find index robustly (some srcs may be absolute/relative)
   currentLightboxIndex = lightboxImages.indexOf(src);
-  
-  img.src = src;
+  if(currentLightboxIndex === -1){
+    // try matching by filename
+    const filename = src.split('/').pop();
+    currentLightboxIndex = lightboxImages.findIndex(s => s && s.endsWith(filename));
+  }
+
+  if(currentLightboxIndex === -1) currentLightboxIndex = 0;
+
+  img.src = lightboxImages[currentLightboxIndex] || src;
   lightbox.classList.add("active");
 }
 
@@ -2768,14 +2942,30 @@ function lightboxPrev(){
 
 let currentTour = null;
 
-function openTourDetails(name, price, category){
+function openTourDetails(tourKey, price, category){
   const modal = document.getElementById("tourDetailsModal");
-  document.getElementById("tourDetailsTitle").textContent = name;
+  const lang = localStorage.getItem('lang') || 'ru';
+
+  const title = translations[lang] && translations[lang][tourKey] ? translations[lang][tourKey] : tourKey;
+
+  const descKey = tourKey + '_text';
+  let description = translations[lang] && translations[lang][descKey] ? translations[lang][descKey] : null;
+  if(!description && translations[lang] && translations[lang][category + '_text']){
+    description = translations[lang][category + '_text'];
+  }
+
+  if(!description){
+    if(category === 'city'){
+      description = lang === 'es' ? 'Una emocionante excursión por la ciudad histórica con visitas a monumentos arquitectónicos.' : 'Увлекательная экскурсия по древнему городу с посещением исторических памятников и архитектурных шедевров.';
+    }else{
+      description = lang === 'es' ? 'Un viaje inolvidable a las montañas de Uzbekistán con paisajes pintorescos, lagos y cocina nacional.' : 'Незабываемое путешествие в горы Узбекистана с живописными видами, озерами и национальной кухней.';
+    }
+  }
+
+  document.getElementById("tourDetailsTitle").textContent = title;
   document.getElementById("tourDetailsPrice").textContent = "$" + price;
-  document.getElementById("tourDetailsDescription").textContent = 
-    category === "city" ? "Увлекательная экскурсия по древнему городу с посещением исторических памятников и архитектурных шедевров." : 
-    "Незабываемое путешествие в горы Узбекистана с живописными видами, озерами и национальной кухней.";
-  currentTour = { name, price };
+  document.getElementById("tourDetailsDescription").textContent = description;
+  currentTour = { name: tourKey, price };
   modal.style.display = "flex";
 }
 
@@ -2809,7 +2999,7 @@ function setReviewRating(rating){
 }
 
 function submitReview(){
-  alert("Спасибо за ваш отзыв!");
+  alert(t('review_thanks'));
 }
 
 /* COUNTDOWN */
@@ -2894,9 +3084,9 @@ function applyDiscount(){
     discount = basePrice * 0.1;
     document.getElementById("discountAmount").textContent = "$" + discount;
     calculatePrice();
-    alert("Скидка применена!");
+    alert(t('discount_applied'));
   }else{
-    alert("Неверный промокод");
+    alert(t('invalid_promo'));
   }
 }
 
@@ -2904,7 +3094,7 @@ function applyDiscount(){
 
 function subscribeNewsletter(e){
   e.preventDefault();
-  alert("Спасибо за подписку!");
+  alert(t('newsletter_thanks'));
   e.target.reset();
 }
 
@@ -2950,27 +3140,31 @@ function goToSlide(index){
   });
 }
 
-function nextSlideCarousel(){
-  currentSlide = (currentSlide + 1) % slides.length;
-  goToSlide(currentSlide);
-}
-
-initCarousel();
-setInterval(nextSlideCarousel, 5000);
-
-/* PRELOAD */
-
 const images = [
-
-"Bukhara 1.jpg",
-"photo_2026-02-23_01-36-31.jpg",
-"photo_2026-02-23_23-29-31.jpg",
-"efe253aa43b8c95b0b17234a6248b66b.jpg",
-"0ad25e08c074b476f8cf40d079dabf2f.jpg",
-"3f1296d9fa554f5d38dd246eba2dcada.jpg",
-"7121fd116a687099bcee8f5882f4afdc.jpg"
-
+  "Bukhara 1.jpg",
+  "photo_2026-02-23_01-36-31.jpg",
+  "photo_2026-02-23_23-29-31.jpg",
+  "efe253aa43b8c95b0b17234a6248b66b.jpg",
+  "0ad25e08c074b476f8cf40d079dabf2f.jpg",
+  "3f1296d9fa554f5d38dd246eba2dcada.jpg",
+  "7121fd116a687099bcee8f5882f4afdc.jpg",
+  "photo_2026-05-23_18-07-45.jpg",
+  "photo_2026-05-23_18-08-03.jpg",
+  "photo_2026-05-23_18-08-14.jpg",
+  "photo_2026-05-23_18-08-25.jpg",
+  "photo_2026-05-23_18-08-35.jpg",
+  "291ce8b68dc17a1f6b81f82e70ec3057.jpg"
 ];
+
+images.forEach(src => {
+
+  const img = new Image();
+
+  img.src = src;
+
+});
+
+images.push("291ce8b68dc17a1f6b81f82e70ec3057.jpg");
 
 images.forEach(src => {
 
