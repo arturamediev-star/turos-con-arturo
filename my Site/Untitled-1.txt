@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Туры у Артура | Premium Uzbekistan</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+
+<style>
+body {margin:0;font-family:'Poppins',sans-serif;background:#0f172a;color:white;transition:0.5s;}
+a{text-decoration:none;color:inherit;}
+h1,h2,h3,h4,h5,h6{margin:0;}
+ul{padding-left:20px;}
+img{display:block;max-width:100%;border-radius:12px;}
+button{padding:10px 25px;border:none;border-radius:12px;font-weight:bold;cursor:pointer;margin:10px;background:gold;color:black;transition:0.3s;}
+button:hover{background:white;}
+
+/* LANGUAGE SWITCHER */
+.language-switcher{position:fixed;right:15px;top:50%;transform:translateY(-50%);background:white;border-radius:40px;box-shadow:0 5px 20px rgba(0,0,0,0.3);padding:5px;z-index:1000;}
+.language-switcher img{width:40px;height:28px;display:block;margin:5px;cursor:pointer;transition:0.3s;border-radius:5px;}
+.language-switcher img:hover{transform:scale(1.1);}
+
+/* HEADER */
+header{position:fixed;top:0;left:0;width:100%;background:rgba(0,0,0,0.6);z-index:999;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;}
+header img{height:60px;border-radius:8px;}
+
+/* HERO */
+.hero,.past-tour-hero,.bukhara-hero{position:relative;height:60vh;overflow:hidden;}
+.hero img,.past-tour-hero img,.bukhara-hero img{width:100%;height:100%;object-fit:cover;filter:brightness(60%);}
+.hero-text,.past-tour-text,.bukhara-text{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;}
+.hero-text h1,.past-tour-text h1,.bukhara-text h1{font-size:50px;}
+.price-badge{background:gold;color:black;padding:8px 18px;border-radius:30px;font-weight:bold;}
+
+/* SECTIONS */
+.section{max-width:900px;margin:60px auto;padding:0 20px;}
+.section h2{margin-top:40px;margin-bottom:15px;}
+.gallery img{width:100%;margin-top:30px;transition:0.4s;}
+.gallery img:hover{transform:scale(1.05);}
+
+/* SLIDERS */
+.slider{position:relative;margin-top:20px;border-radius:12px;overflow:hidden;max-width:100%;height:300px;}
+.slider img{width:100%;height:100%;object-fit:cover;display:none;}
+.slider img.active{display:block;}
+.slider-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.5);color:white;border:none;font-size:24px;padding:10px;cursor:pointer;border-radius:50%;}
+.prev{left:10px;} .next{right:10px;}
+
+/* MODAL */
+.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);justify-content:center;align-items:center;z-index:1000;}
+.modal-content{background:white;padding:30px;border-radius:12px;max-width:400px;width:90%;text-align:left;}
+.modal-content h3{margin-top:0;}
+.close{float:right;font-size:22px;cursor:pointer;}
+input,textarea{width:100%;padding:8px;margin:8px 0;border-radius:5px;border:1px solid #ccc;}
+
+/* DARK THEME */
+.dark{background:#121212;color:white;}
+.dark .modal-content{background:#222;color:white;}
+</style>
+</head>
+<body>
+
+<!-- LANGUAGE SWITCHER -->
+<div class="language-switcher">
+  <img src="https://flagcdn.com/w40/ru.png" onclick="setLanguage('ru')" alt="Русский">
+  <img src="https://flagcdn.com/w40/es.png" onclick="setLanguage('es')" alt="Español">
+</div>
+
+<!-- HEADER -->
+<header>
+  <a href="#"><img src="photo_2025-10-25_21-12-55.jpg" alt="Логотип"></a>
+</header>
+
+<!-- CURRENT TOUR -->
+<section class="hero">
+  <img src="photo_2026-02-23_01-36-31.jpg" alt="Текущий тур">
+  <div class="hero-text">
+    <h1 data-translate="current_title">Весенний горный выезд</h1>
+    <div class="price-badge" data-translate="current_price">от 40$</div>
+  </div>
+</section>
+
+<section class="section">
+  <h2 data-translate="current_photos">Фотографии тура</h2>
+  <div class="slider" id="currentSlider">
+    <img src="photo_2026-02-23_01-36-31.jpg" class="active">
+    <img src="photo_2026-02-23_23-29-31.jpg">
+    <img src="photo_2026-02-28_16-21-53.jpg">
+    <button class="slider-btn prev" onclick="prevSlide('currentSlider')">&#10094;</button>
+    <button class="slider-btn next" onclick="nextSlide('currentSlider')">&#10095;</button>
+  </div>
+</section>
+
+<!-- PAST TOURS -->
+<section class="past-tour-hero">
+  <img src="photo_2026-02-23_20-55-50.jpg" alt="Прошлый тур">
+  <div class="past-tour-text">
+    <h1 data-translate="past_title">Предыдущий тур: Хива</h1>
+  </div>
+</section>
+
+<section class="section">
+  <h2 data-translate="past_photos">Фотографии прошлых туров</h2>
+  <div class="slider" id="pastSlider">
+    <img src="photo_2026-02-23_20-55-50.jpg" class="active">
+    <img src="photo_2025-10-25_21-12-55.jpg">
+    <button class="slider-btn prev" onclick="prevSlide('pastSlider')">&#10094;</button>
+    <button class="slider-btn next" onclick="nextSlide('pastSlider')">&#10095;</button>
+  </div>
+  <p data-translate="past_text">Несколько насыщенных дней в атмосфере древнего города.</p>
+</section>
+
+<!-- BUKHARA -->
+<section class="bukhara-hero">
+  <img src="Bukhara 1.jpg" alt="Бухара">
+  <div class="bukhara-text">
+    <h1 data-translate="bukhara_title">Бухара</h1>
+    <div class="price-badge" data-translate="bukhara_price">от 120$</div>
+  </div>
+</section>
+
+<section class="section">
+  <h2 data-translate="bukhara_history">История города</h2>
+  <p data-translate="bukhara_history_text">Бухара — один из древнейших городов Центральной Азии. Более 2500 лет истории, уникальная исламская архитектура, медресе, минареты и атмосфера восточной сказки.</p>
+  <h2 data-translate="bukhara_program_title">Экскурсионная программа (1 день)</h2>
+  <ul>
+    <li data-translate="bukhara_p1">Крепость Арк</li>
+    <li data-translate="bukhara_p2">Комплекс Калян</li>
+    <li data-translate="bukhara_p3">Медресе Мири-Араб</li>
+    <li data-translate="bukhara_p4">Площадь Ляби-Хауз</li>
+  </ul>
+  <div class="slider" id="bukharaSlider">
+    <img src="Bukhara 1.jpg" class="active">
+    <img src="bukhara 2.jpg">
+    <button class="slider-btn prev" onclick="prevSlide('bukharaSlider')">&#10094;</button>
+    <button class="slider-btn next" onclick="nextSlide('bukharaSlider')">&#10095;</button>
+  </div>
+  <button onclick="openModal()" data-translate="book">Забронировать тур</button>
+</section>
+
+<!-- CONTACTS & MODAL -->
+<section class="section" id="contacts">
+  <h2 data-translate="contacts">Контакты</h2>
+  <p>📞 +998917089619</p>
+  <p>📞 +998915229619</p>
+  <p>📧 arturamediev@gmail.com</p>
+</section>
+
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <h3 data-translate="book_modal">Забронировать тур</h3>
+    <form action="https://formspree.io/f/xqedjoqe" method="POST" enctype="multipart/form-data">
+      <input type="text" name="name" placeholder="Имя" required>
+      <input type="tel" name="phone" placeholder="Телефон" required>
+      <textarea name="message" placeholder="Комментарий"></textarea>
+      <label>Фото (по желанию): <input type="file" name="photo" accept="image/*"></label>
+      <button type="submit" data-translate="send">Отправить</button>
+    </form>
+  </div>
+</div>
+
+<script>
+// LANGUAGES
+const translations={
+  ru:{
+    current_title:"Весенний горный выезд",
+    current_price:"от 40$",
+    current_photos:"Фотографии тура",
+    past_title:"Предыдущий тур: Хива",
+    past_photos:"Фотографии прошлых туров",
+    past_text:"Несколько насыщенных дней в атмосфере древнего города.",
+    bukhara_title:"Бухара",
+    bukhara_price:"от 120$",
+    bukhara_history:"История города",
+    bukhara_history_text:"Бухара — один из древнейших городов Центральной Азии. Более 2500 лет истории, уникальная исламская архитектура, медресе, минареты и атмосфера восточной сказки.",
+    bukhara_program_title:"Экскурсионная программа (1 день)",
+    bukhara_p1:"Крепость Арк",
+    bukhara_p2:"Комплекс Калян",
+    bukhara_p3:"Медресе Мири-Араб",
+    bukhara_p4:"Площадь Ляби-Хауз",
+    book:"Забронировать тур",
+    contacts:"Контакты",
+    book_modal:"Забронировать тур",
+    send:"Отправить"
+  },
+  es:{
+    current_title:"Excursión de primavera en la montaña",
+    current_price:"Desde 40$",
+    current_photos:"Fotos del tour",
+    past_title:"Tour anterior: Jiva",
+    past_photos:"Fotos de tours anteriores",
+    past_text:"Varios días intensos en la atmósfera de la ciudad antigua.",
+    bukhara_title:"Bujará",
+    bukhara_price:"Desde 120$",
+    bukhara_history:"Historia de la ciudad",
+    bukhara_history_text:"Bujará es una de las ciudades más antiguas de Asia Central. Más de 2500 años de historia, arquitectura islámica única, madrasas, minaretes y una atmósfera oriental mágica.",
+    bukhara_program_title:"Programa de excursión (1 día)",
+    bukhara_p1:"Fortaleza Ark",
+    bukhara_p2:"Complejo Kalon",
+    bukhara_p3:"Madraza Mir-i-Arab",
+    bukhara_p4:"Plaza Lyabi-Hauz",
+    book:"Reservar tour",
+    contacts:"Contactos",
+    book_modal:"Reservar tour",
+    send:"Enviar"
+  }
+};
+
+function setLanguage(lang){
+  document.querySelectorAll("[data-translate]").forEach(el=>{
+    const key=el.getAttribute("data-translate");
+    el.innerText=translations[lang][key];
+  });
+  localStorage.setItem("language",lang);
+}
+
+window.onload=function(){
+  const savedLang=localStorage.getItem("language")||"ru";
+  setLanguage(savedLang);
+}
+
+// MODAL
+function openModal(){document.getElementById("modal").style.display="flex";}
+function closeModal(){document.getElementById("modal").style.display="none";}
+
+// SLIDERS
+function nextSlide(id){
+  const slider=document.getElementById(id);
+  let slides=slider.querySelectorAll("img");
+  let currentIndex=[...slides].findIndex(s=>s.classList.contains("active"));
+  slides[currentIndex].classList.remove("active");
+  let nextIndex=(currentIndex+1)%slides.length;
+  slides[nextIndex].classList.add("active");
+}
+function prevSlide(id){
+  const slider=document.getElementById(id);
+  let slides=slider.querySelectorAll("img");
+  let currentIndex=[...slides].findIndex(s=>s.classList.contains("active"));
+  slides[currentIndex].classList.remove("active");
+  let prevIndex=(currentIndex-1+slides.length)%slides.length;
+  slides[prevIndex].classList.add("active");
+}
+</script>
+
+</body>
+</html>
